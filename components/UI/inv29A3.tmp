@@ -1,0 +1,232 @@
+[gd_scene load_steps=12 format=3 uid="uid://dyqyhvl8c21wi"]
+
+[ext_resource type="FontFile" uid="uid://b0f3lx6x2ei1i" path="res://assets/font/BLKCHCRY.TTF" id="1_6pk0i"]
+[ext_resource type="PackedScene" uid="uid://0p8fq1w0ggrt" path="res://components/UI/back.tscn" id="2_1dkb4"]
+[ext_resource type="Script" path="res://components/UI/title.gd" id="2_fi4nv"]
+[ext_resource type="Script" path="res://components/UI/back.gd" id="3_gforf"]
+[ext_resource type="Script" path="res://components/UI/skill_points.gd" id="5_3wguf"]
+[ext_resource type="PackedScene" uid="uid://cvu4c4vwbqgpp" path="res://components/UI/skill_point.tscn" id="5_je8pi"]
+
+[sub_resource type="Gradient" id="Gradient_d5yfo"]
+offsets = PackedFloat32Array(0, 0.995935)
+colors = PackedColorArray(0, 0, 0, 1, 0.0899431, 0.146732, 0.223544, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6fnq5"]
+gradient = SubResource("Gradient_d5yfo")
+fill_from = Vector2(0.487179, 1)
+fill_to = Vector2(0.474359, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6tims"]
+texture = SubResource("GradientTexture2D_6fnq5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_nacqm"]
+font = ExtResource("1_6pk0i")
+font_size = 41
+
+[sub_resource type="LabelSettings" id="LabelSettings_wr1nc"]
+font = ExtResource("1_6pk0i")
+font_size = 36
+
+[node name="inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6tims")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.254
+anchor_top = 0.037
+anchor_right = 0.746
+anchor_bottom = 0.145
+offset_left = 0.391998
+offset_top = 0.0240002
+offset_right = -0.392212
+offset_bottom = 0.0399933
+grow_horizontal = 2
+grow_vertical = 2
+text = "3 Skill Points"
+label_settings = SubResource("LabelSettings_nacqm")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_fi4nv")
+
+[node name="Button" parent="." instance=ExtResource("2_1dkb4")]
+layout_mode = 1
+anchor_top = 0.9
+anchor_right = 0.094
+offset_top = -44.064
+offset_right = 51.84
+grow_vertical = 1
+script = ExtResource("3_gforf")
+
+[node name="desc" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 3
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -753.0
+offset_top = -468.0
+offset_right = -417.0
+offset_bottom = -431.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "ceva abc"
+label_settings = SubResource("LabelSettings_wr1nc")
+
+[node name="SkillPoints" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_3wguf")
+
+[node name="origin" parent="SkillPoints" instance=ExtResource("5_je8pi")]
+layout_mode = 1
+anchor_left = 0.47
+anchor_top = 0.445
+anchor_right = 0.53
+anchor_bottom = 0.555
+offset_left = -0.440063
+offset_top = 0.139984
+offset_right = 7.55988
+offset_bottom = 8.13998
+grow_horizontal = 2
+grow_vertical = 2
+cost = 0
+description = "origin"
+
+[node name="skillPoint2" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
+layout_mode = 1
+anchor_left = 0.367
+anchor_top = 0.443
+anchor_right = 0.428
+anchor_bottom = 0.552
+offset_left = 0.215973
+offset_top = -0.0640259
+offset_right = 8.21597
+offset_bottom = 7.93594
+grow_horizontal = 2
+grow_vertical = 2
+unlocked = false
+previous = NodePath("../origin")
+description = "+ 10% tower strength"
+
+[node name="skillPoint3" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
+layout_mode = 1
+anchor_left = 0.311
+anchor_top = 0.481
+anchor_right = 0.372
+anchor_bottom = 0.591
+offset_left = -0.272034
+offset_top = 0.311981
+offset_right = 7.72797
+offset_bottom = 8.31201
+grow_horizontal = 2
+grow_vertical = 2
+unlocked = false
+previous = NodePath("../skillPoint2")
+description = "+ 20% tower strength"
+
+[node name="skillPoint4" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
+layout_mode = 1
+anchor_left = 0.256
+anchor_top = 0.421
+anchor_right = 0.317
+anchor_bottom = 0.531
+offset_left = 0.0879822
+offset_top = 0.191986
+offset_right = 8.08798
+offset_bottom = 8.19202
+grow_horizontal = 2
+grow_vertical = 2
+unlocked = false
+cost = 2
+previous = NodePath("../skillPoint3")
+description = "+ 30% tower strength"
+
+[node name="inferno" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
+layout_mode = 1
+anchor_left = 0.302
+anchor_top = 0.233
+anchor_right = 0.363
+anchor_bottom = 0.343
+offset_left = 0.0959778
+offset_top = 0.0159912
+offset_right = 8.09598
+offset_bottom = 8.01601
+grow_horizontal = 2
+grow_vertical = 2
+unlocked = false
+cost = 5
+previous = NodePath("../skillPoint4")
+description = "unlock inferno tower"
+
+[node name="skillPoint5" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
+layout_mode = 1
+anchor_left = 0.22
+anchor_top = 0.503
+anchor_right = 0.28
+anchor_bottom = 0.613
+offset_left = -0.440018
+offset_top = 0.0559998
+offset_right = 7.56
+offset_bottom = 8.05603
+grow_horizontal = 2
+grow_vertical = 2
+unlocked = false
+cost = 2
+previous = NodePath("../skillPoint4")
+description = "+ 80% tower strength"
+
+[node name="skillPoint6" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
+layout_mode = 1
+anchor_left = 0.159
+anchor_top = 0.418
+anchor_right = 0.22
+anchor_bottom = 0.528
+offset_left = -0.168015
+offset_top = 0.135986
+offset_right = 7.83203
+offset_bottom = 8.13602
+grow_horizontal = 2
+grow_vertical = 2
+unlocked = false
+cost = 3
+previous = NodePath("../skillPoint5")
+description = "+ 130% tower strength"
+
+[node name="skillPoint7" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
+layout_mode = 1
+anchor_left = 0.107
+anchor_top = 0.5
+anchor_right = 0.168
+anchor_bottom = 0.608
+offset_left = -0.264008
+offset_top = -1.0
+offset_right = 7.73601
+offset_bottom = 7.00003
+grow_horizontal = 2
+grow_vertical = 2
+unlocked = false
+previous = NodePath("../skillPoint6")
+description = "+200% strength size"

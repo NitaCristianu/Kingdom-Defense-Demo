@@ -1,0 +1,274 @@
+[gd_scene load_steps=20 format=3 uid="uid://bpuxjs1v2uwrj"]
+
+[ext_resource type="FontFile" uid="uid://b0f3lx6x2ei1i" path="res://assets/font/BLKCHCRY.TTF" id="1_cgq3e"]
+[ext_resource type="Script" path="res://components/UI/menu.gd" id="1_xi5po"]
+[ext_resource type="PackedScene" uid="uid://ddaw8y2p33hnc" path="res://components/UI/button.tscn" id="2_tnl6g"]
+[ext_resource type="StyleBox" uid="uid://cuw3kur5vcdds" path="res://resources/new_style_box_flat.tres" id="3_ipn0a"]
+[ext_resource type="Texture2D" uid="uid://cqwtxc45vuuqd" path="res://assets/Icons/300ppp/UI NUEVA-86.png" id="4_5vh78"]
+[ext_resource type="Texture2D" uid="uid://cl4dbwefw5amu" path="res://assets/Icons/300ppp/UI NUEVA-96.png" id="5_6015r"]
+[ext_resource type="Texture2D" uid="uid://duolvmgwib2qp" path="res://assets/Icons/72ppp/UI NUEVA-95.png" id="6_lr6tu"]
+
+[sub_resource type="Gradient" id="Gradient_q60v0"]
+interpolation_mode = 2
+colors = PackedColorArray(0.320893, 0.40177, 0.521849, 1, 0.111209, 0.131887, 0.121049, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_08wey"]
+gradient = SubResource("Gradient_q60v0")
+fill_from = Vector2(0.0598291, 0)
+fill_to = Vector2(0.662393, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_68hjg"]
+texture = SubResource("GradientTexture2D_08wey")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dg8kw"]
+font_size = 19
+
+[sub_resource type="LabelSettings" id="LabelSettings_erktc"]
+font = ExtResource("1_cgq3e")
+font_size = 89
+shadow_size = 21
+shadow_color = Color(1, 1, 1, 0.12549)
+
+[sub_resource type="LabelSettings" id="LabelSettings_artnc"]
+font = ExtResource("1_cgq3e")
+font_size = 26
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5sny8"]
+texture = ExtResource("4_5vh78")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaqle"]
+bg_color = Color(0.329613, 0, 0.0635274, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.580744, 0, 0.20168, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 15
+shadow_offset = Vector2(0, 5.8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4myu3"]
+font = ExtResource("1_cgq3e")
+font_size = 36
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_if0r1"]
+texture = ExtResource("5_6015r")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_516bi"]
+bg_color = Color(0.0549556, 0.187788, 0.168114, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.13908, 0.354322, 0.264088, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 15
+shadow_offset = Vector2(0, 5.8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rlp5u"]
+texture = ExtResource("6_lr6tu")
+
+[node name="menu" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xi5po")
+
+[node name="background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_68hjg")
+
+[node name="Subtitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222
+anchor_top = 0.421
+anchor_right = 0.776
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME MADE FOR ASUS ROG JAM"
+label_settings = SubResource("LabelSettings_dg8kw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.087
+anchor_top = 0.262
+anchor_right = 0.913
+anchor_bottom = 0.467
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAMER DEFENSE"
+label_settings = SubResource("LabelSettings_erktc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buttons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.144
+anchor_top = 0.614
+anchor_right = 0.856
+anchor_bottom = 0.912
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 95
+alignment = 1
+
+[node name="endless" parent="buttons" instance=ExtResource("2_tnl6g")]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="buttons/endless"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_ipn0a")
+
+[node name="name2" type="Label" parent="buttons/endless"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.092
+anchor_top = 0.596
+anchor_right = 0.911
+anchor_bottom = 0.85
+offset_left = 0.067997
+offset_top = -0.0279999
+offset_right = 0.118973
+offset_bottom = -0.0500031
+grow_horizontal = 2
+grow_vertical = 2
+text = "endless mode"
+label_settings = SubResource("LabelSettings_artnc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon2" type="Panel" parent="buttons/endless"]
+modulate = Color(0.180392, 0.25098, 0.654902, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.312
+anchor_top = 0.155
+anchor_right = 0.688
+anchor_bottom = 0.565
+offset_left = -0.0200043
+offset_top = 0.0849991
+offset_right = 3.57999
+offset_bottom = -1.415
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5sny8")
+
+[node name="campaign" parent="buttons" instance=ExtResource("2_tnl6g")]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="buttons/campaign"]
+custom_minimum_size = Vector2(257.625, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.113
+anchor_right = 1.113
+anchor_bottom = 1.0
+offset_left = 23.73
+offset_right = -23.73
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yaqle")
+
+[node name="name" type="Label" parent="buttons/campaign"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.092
+anchor_top = 0.596
+anchor_right = 0.911
+anchor_bottom = 0.85
+offset_top = 1.52588e-05
+offset_bottom = 1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+text = "campaign mode"
+label_settings = SubResource("LabelSettings_4myu3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon" type="Panel" parent="buttons/campaign"]
+modulate = Color(0.580392, 0, 0.2, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.312
+anchor_top = 0.155
+anchor_right = 0.688
+anchor_bottom = 0.565
+offset_top = 0.0849991
+offset_bottom = -0.0449982
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_if0r1")
+
+[node name="inventory" parent="buttons" instance=ExtResource("2_tnl6g")]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="buttons/inventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_516bi")
+
+[node name="icon" type="Panel" parent="buttons/inventory"]
+modulate = Color(0.137255, 0.352941, 0.262745, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.312
+anchor_top = 0.155
+anchor_right = 0.688
+anchor_bottom = 0.565
+offset_top = 0.0849991
+offset_bottom = -0.0449982
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rlp5u")
+
+[node name="name" type="Label" parent="buttons/inventory"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.092
+anchor_top = 0.596
+anchor_right = 0.911
+anchor_bottom = 0.85
+offset_top = 1.52588e-05
+offset_bottom = 1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+text = "inventory"
+label_settings = SubResource("LabelSettings_4myu3")
+horizontal_alignment = 1
+vertical_alignment = 1

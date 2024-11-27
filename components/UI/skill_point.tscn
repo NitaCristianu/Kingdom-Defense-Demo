@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvu4c4vwbqgpp"]
+
+[ext_resource type="Texture2D" uid="uid://df2wy67oam1lh" path="res://assets/levels/skillpoint_locked.png" id="1_g21dl"]
+[ext_resource type="Script" path="res://components/UI/skill_point.gd" id="2_byd48"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jo5am"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xusk8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ctie"]
+bg_color = Color(0.998154, 0.344706, 0.287727, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjsaq"]
+
+[node name="skillPoint" type="Button"]
+anchors_preset = -1
+anchor_right = 0.054
+anchor_bottom = 0.096
+offset_right = -0.208
+offset_bottom = -0.208
+pivot_offset = Vector2(31, 31)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jo5am")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_xusk8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ctie")
+icon = ExtResource("1_g21dl")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_byd48")
+unlocked = true
+description = "+10% smth"
+
+[node name="spcost" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_vjsaq")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://doupd11va851d"]
+
+[ext_resource type="Script" path="res://components/Enemies/enemy.gd" id="1_sfqy6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6plu"]
+albedo_color = Color(0.6386, 0.377803, 0.0792241, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gd5ey"]
+material = SubResource("StandardMaterial3D_s6plu")
+
+[node name="enemy" type="Node3D"]
+script = ExtResource("1_sfqy6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_gd5ey")
+
+[node name="Timer" type="Timer" parent="."]

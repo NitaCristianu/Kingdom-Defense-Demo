@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://0q8mofibvw4c"]
+
+[ext_resource type="Script" path="res://components/Towers/worker.gd" id="1_tkddk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_opv63"]
+
+[node name="Worker" type="Node3D"]
+script = ExtResource("1_tkddk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_opv63")
+
+[connection signal="thinking" from="." to="." method="_on_thinking"]

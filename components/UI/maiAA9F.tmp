@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1h0caj6evtdp"]
+
+[ext_resource type="PackedScene" uid="uid://bpuxjs1v2uwrj" path="res://components/UI/menu.tscn" id="1_ulo51"]
+[ext_resource type="PackedScene" uid="uid://dm37di2jsdyyg" path="res://components/UI/campaignmode.tscn" id="2_8ood3"]
+
+[node name="mainmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="menu" parent="." instance=ExtResource("1_ulo51")]
+layout_mode = 1
+
+[node name="campaign" parent="." instance=ExtResource("2_8ood3")]
+layout_mode = 1

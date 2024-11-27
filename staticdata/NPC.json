@@ -1,0 +1,1 @@
+{"Entity":{"Tower":{"crossbow":{"Speed":2.23,"Name":"Crossbow","Range":10.5,"Price":{"gold":0,"wood":0,"stone":0,"mana":0}},"worker":{"Speed":3,"Name":"Worker","Range":22.7,"Price":{"gold":0,"wood":0,"stone":0,"mana":1}}},"Enemy":{}}}

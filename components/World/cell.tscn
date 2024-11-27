@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://r8yuw8omr5tj"]
+
+[ext_resource type="Script" path="res://components/World/cell.gd" id="1_arkkx"]
+
+[node name="Cell" type="Node3D"]
+script = ExtResource("1_arkkx")

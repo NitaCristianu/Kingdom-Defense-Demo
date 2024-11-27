@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=3 uid="uid://bt2u7f1wjnwun"]
+
+[ext_resource type="Script" path="res://config/configuration.gd" id="1_qbu6f"]
+[ext_resource type="Script" path="res://components/Player/player.gd" id="2_dnedb"]
+[ext_resource type="Script" path="res://components/Player/camera.gd" id="3_xknit"]
+[ext_resource type="Script" path="res://components/World/chunk_container.gd" id="4_8b5dl"]
+[ext_resource type="Script" path="res://components/World/path/path_generator.gd" id="5_a4jty"]
+[ext_resource type="PackedScene" uid="uid://bqkygim6mafhs" path="res://components/UI/ingame.tscn" id="6_fq5fn"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jpa06"]
+noise_type = 3
+frequency = 0.8674
+offset = Vector3(0, 10.8, 212.12)
+fractal_octaves = 3
+fractal_lacunarity = 0.64
+fractal_gain = 11.09
+fractal_weighted_strength = 1.0
+domain_warp_type = 2
+domain_warp_amplitude = 24.675
+domain_warp_frequency = -0.125
+domain_warp_fractal_type = 2
+domain_warp_fractal_octaves = 1
+domain_warp_fractal_lacunarity = 7.045
+domain_warp_fractal_gain = -0.83
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3t4ij"]
+noise = SubResource("FastNoiseLite_jpa06")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_liuax"]
+albedo_color = Color(0.705999, 0.976621, 0.713342, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jiw5w"]
+material = SubResource("StandardMaterial3D_liuax")
+size = Vector3(2.1, 2.1, 2.1)
+
+[node name="main" type="Node3D"]
+
+[node name="Configuration" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_qbu6f")
+
+[node name="Wave" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Timer" type="Timer" parent="Wave"]
+autostart = true
+
+[node name="Player" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+script = ExtResource("2_dnedb")
+
+[node name="Camera" type="Camera3D" parent="Player"]
+unique_name_in_owner = true
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 0, 0)
+fov = 71.0
+size = 12.0
+near = 0.002
+far = 238.77
+script = ExtResource("3_xknit")
+
+[node name="CameraLight" type="SpotLight3D" parent="Player/Camera"]
+unique_name_in_owner = true
+transform = Transform3D(0.707107, 0.707107, 3.09086e-08, -0.353553, 0.353553, 0.866026, 0.612373, -0.612373, 0.5, -0.199748, 13.8862, 8.56771)
+light_color = Color(0.916885, 0.887085, 0.840181, 1)
+light_energy = 0.969
+light_indirect_energy = 11.99
+light_volumetric_fog_energy = 9.872
+light_size = 0.711
+light_specular = 11.652
+spot_range = 981.874
+spot_attenuation = 0.4
+spot_angle = 73.84
+spot_angle_attenuation = 1.41421
+
+[node name="ChunkContainer" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_8b5dl")
+ChunkNoiseTexture = SubResource("NoiseTexture2D_3t4ij")
+
+[node name="ChunkPathGenerator" type="Node3D" parent="ChunkContainer"]
+unique_name_in_owner = true
+script = ExtResource("5_a4jty")
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Structs" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="ingame" parent="." instance=ExtResource("6_fq5fn")]
+unique_name_in_owner = true
+
+[node name="BuildingMark" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_jiw5w")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="BuildingMark"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+light_color = Color(0.622491, 0.944226, 0.579406, 1)
+light_energy = 8.602
+light_indirect_energy = 3.517
+light_volumetric_fog_energy = 7.815
+spot_range = 1.788
+spot_angle = 70.63
+spot_angle_attenuation = 0.732043
+
+[node name="PlacementHandler" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="Wave/Timer" to="Configuration" method="_on_timer_timeout"]
+[connection signal="timeout" from="Wave/Timer" to="ChunkContainer" method="_on_timer_timeout"]
+[connection signal="state_changed" from="Player" to="Player" method="_on_state_changed"]
+[connection signal="enterbuildmode" from="ingame" to="Player" method="_on_ingame_enterbuildmode"]

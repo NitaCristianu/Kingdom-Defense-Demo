@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://by7o0hvmw8ed2"]
+
+[ext_resource type="Script" path="res://components/Systems/new_wave_button.gd" id="1_0v5pg"]
+[ext_resource type="FontFile" uid="uid://b0f3lx6x2ei1i" path="res://assets/font/BLKCHCRY.TTF" id="1_4ahol"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xddes"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7hy8"]
+bg_color = Color(0.692163, 0.495817, 0.285595, 1)
+border_width_top = 1024
+border_color = Color(0.594174, 0.387832, 0.253813, 1)
+border_blend = true
+corner_radius_top_left = 150
+corner_radius_top_right = 150
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
+corner_detail = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_2keao"]
+font = ExtResource("1_4ahol")
+font_size = 341
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.545098)
+shadow_offset = Vector2(24.455, 17.505)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tvwfp"]
+size = Vector3(3.59912, 3.5611, 3.56523)
+
+[node name="NewWaveButton" type="Node3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+script = ExtResource("1_0v5pg")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.364, 0, 0, 0, 0.364, 0, 0, 0, 0.36, 0, 0, 0)
+billboard = 1
+double_sided = false
+alpha_antialiasing_edge = 1.0
+render_priority = 1
+texture = SubResource("ViewportTexture_xddes")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="Panel" type="Panel" parent="Sprite3D/SubViewport"]
+show_behind_parent = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = -245.93
+offset_right = 550.0
+offset_bottom = 204.07
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7hy8")
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -519.135
+offset_top = -214.0
+offset_right = 1095.86
+offset_bottom = 214.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Extend"
+label_settings = SubResource("LabelSettings_2keao")
+
+[node name="extendzone" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="extendzone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0632324, 0.288056, -0.104668)
+shape = SubResource("BoxShape3D_tvwfp")

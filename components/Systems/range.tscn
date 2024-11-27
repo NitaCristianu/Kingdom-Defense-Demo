@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dld7cqp1pflis"]
+
+[ext_resource type="Script" path="res://components/Systems/range.gd" id="1_v7r7t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfdpg"]
+transparency = 1
+blend_mode = 4
+albedo_color = Color(0.227861, 0.403112, 0.461117, 0.380392)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0ckrj"]
+material = SubResource("StandardMaterial3D_pfdpg")
+
+[node name="Range" type="Node3D"]
+script = ExtResource("1_v7r7t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.07, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_0ckrj")

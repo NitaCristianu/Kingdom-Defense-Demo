@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://7dq0do5v1hsj"]
+
+[ext_resource type="Shader" uid="uid://ds0lj2rrwusmn" path="res://components/vfx/thunder_editable.tres" id="1_pcnse"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0t77s"]
+lifetime_randomness = 0.11
+particle_flag_align_y = true
+direction = Vector3(1.115, 2.055, 1.18)
+spread = 77.73
+angular_velocity_min = 204.09
+angular_velocity_max = 204.09
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 3.99998
+gravity = Vector3(0, 0, -10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3281j"]
+render_priority = 0
+shader = ExtResource("1_pcnse")
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4uaw"]
+lightmap_size_hint = Vector2i(7, 7)
+material = SubResource("ShaderMaterial_3281j")
+
+[node name="lighting" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00724483, 0.00502986, 0.0288528)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0.000624728, 0.000314058, -0.00062491, 1, 0.000550707, -0.000313695, -0.000550914, 1, 0, 0, 0)
+amount = 4
+lifetime = 0.65
+preprocess = 0.15
+explosiveness = 1.0
+randomness = 0.8
+local_coords = true
+draw_order = 1
+transform_align = 1
+trail_lifetime = 1.88
+process_material = SubResource("ParticleProcessMaterial_0t77s")
+draw_pass_1 = SubResource("QuadMesh_g4uaw")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D/GPUParticles3D"]
+light_color = Color(0.0839931, 0.219674, 0.674462, 1)
+light_energy = 4.353
+light_indirect_energy = 3.683
+light_volumetric_fog_energy = 1.096
+light_bake_mode = 0
+omni_range = 1.941
+omni_attenuation = -3.192

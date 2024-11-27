@@ -1,0 +1,212 @@
+[gd_scene load_steps=22 format=3 uid="uid://dlmk0fda3hkb5"]
+
+[ext_resource type="Script" path="res://components/UI/h_box_container.gd" id="1_64hqn"]
+[ext_resource type="PackedScene" uid="uid://dhkwes57ltdei" path="res://components/UI/tower_button.tscn" id="1_daocs"]
+[ext_resource type="Script" path="res://components/UI/ingame_ui_final.gd" id="1_fyw2t"]
+[ext_resource type="PackedScene" uid="uid://co3wscctlvdt7" path="res://components/UI/bookofupgrades.tscn" id="3_bwal2"]
+[ext_resource type="FontFile" uid="uid://b0f3lx6x2ei1i" path="res://assets/font/BLKCHCRY.TTF" id="5_qhojm"]
+[ext_resource type="Script" path="res://components/UI/wave_allert.gd" id="6_bwfit"]
+[ext_resource type="PackedScene" path="res://components/UI/animator.tscn" id="7_ck68a"]
+[ext_resource type="Texture2D" uid="uid://cj8n3tqnm11cc" path="res://assets/healthbar/8.png" id="8_g25eg"]
+[ext_resource type="Script" path="res://components/UI/healthbar.gd" id="9_3f143"]
+[ext_resource type="Texture2D" uid="uid://d01charvj4u4v" path="res://assets/resources/wood.png" id="10_1jovp"]
+[ext_resource type="FontFile" uid="uid://dbuptrhrkwysm" path="res://assets/font/MedievalSharp-Regular.ttf" id="11_6mbpq"]
+[ext_resource type="Texture2D" uid="uid://cway0ffn0nuio" path="res://assets/resources/stone.png" id="12_j8qx3"]
+[ext_resource type="Texture2D" uid="uid://yfuamp1h6s4k" path="res://assets/resources/gold.png" id="13_pyavf"]
+[ext_resource type="Texture2D" uid="uid://7jfhgmvuwn08" path="res://assets/resources/mana.png" id="14_n001m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rxok4"]
+font = ExtResource("5_qhojm")
+font_size = 361
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kg31i"]
+texture = ExtResource("8_g25eg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ean23"]
+texture = ExtResource("10_1jovp")
+
+[sub_resource type="LabelSettings" id="LabelSettings_r30ur"]
+font = ExtResource("11_6mbpq")
+font_size = 51
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_45xg3"]
+texture = ExtResource("12_j8qx3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yulg0"]
+texture = ExtResource("13_pyavf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ijc0"]
+texture = ExtResource("14_n001m")
+
+[node name="ingame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fyw2t")
+
+[node name="towerCollection" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -234.0
+offset_top = -130.0
+offset_right = 234.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 15
+alignment = 1
+script = ExtResource("1_64hqn")
+
+[node name="template" parent="towerCollection" instance=ExtResource("1_daocs")]
+visible = false
+layout_mode = 2
+
+[node name="Book" parent="." instance=ExtResource("3_bwal2")]
+layout_mode = 1
+anchor_left = 0.617
+anchor_top = 0.27121
+anchor_right = 0.96
+anchor_bottom = 0.71121
+offset_left = 0.215942
+offset_top = 0.256027
+offset_right = 5.07996
+offset_bottom = -6.86398
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="WaveAllert" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.417
+anchor_top = 0.004
+anchor_right = 0.582
+anchor_bottom = 0.105
+offset_left = -560.884
+offset_top = -199.592
+offset_right = 562.036
+offset_bottom = 186.96
+grow_horizontal = 2
+scale = Vector2(0.145, 0.145)
+pivot_offset = Vector2(656, 233.128)
+text = "Wave 34"
+label_settings = SubResource("LabelSettings_rxok4")
+script = ExtResource("6_bwfit")
+
+[node name="Animator" parent="WaveAllert" instance=ExtResource("7_ck68a")]
+
+[node name="healthbar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.014
+anchor_top = 0.269
+anchor_right = 0.091
+anchor_bottom = 0.702
+offset_left = 0.119999
+offset_top = 0.47998
+offset_right = 0.279984
+offset_bottom = -0.160034
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kg31i")
+script = ExtResource("9_3f143")
+
+[node name="resource1" type="HBoxContainer" parent="."]
+layout_mode = 2
+anchor_left = 0.019
+anchor_top = 0.033
+anchor_right = 0.389
+anchor_bottom = 0.106
+offset_left = -0.480003
+offset_top = 0.360001
+offset_right = -0.880066
+offset_bottom = -0.480003
+size_flags_vertical = 3
+theme_override_constants/separation = 70
+
+[node name="wood" type="HBoxContainer" parent="resource1"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resource1/wood"]
+texture_repeat = 3
+custom_minimum_size = Vector2(70, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ean23")
+
+[node name="Label" type="Label" parent="resource1/wood"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_r30ur")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="stone" type="HBoxContainer" parent="resource1"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resource1/stone"]
+texture_repeat = 3
+custom_minimum_size = Vector2(70, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_45xg3")
+
+[node name="Label" type="Label" parent="resource1/stone"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_r30ur")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="resource2" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 1174.0
+offset_top = 36.0
+offset_right = 1884.0
+offset_bottom = 107.0
+size_flags_vertical = 3
+theme_override_constants/separation = 70
+alignment = 2
+
+[node name="gold" type="HBoxContainer" parent="resource2"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resource2/gold"]
+texture_repeat = 3
+custom_minimum_size = Vector2(70, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_yulg0")
+
+[node name="Label" type="Label" parent="resource2/gold"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_r30ur")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mana" type="HBoxContainer" parent="resource2"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resource2/mana"]
+texture_repeat = 3
+custom_minimum_size = Vector2(70, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5ijc0")
+
+[node name="Label" type="Label" parent="resource2/mana"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_r30ur")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="selected" from="towerCollection" to="." method="_on_tower_collection_selected"]

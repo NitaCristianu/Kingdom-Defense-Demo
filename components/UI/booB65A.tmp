@@ -1,0 +1,187 @@
+[gd_scene load_steps=9 format=3 uid="uid://co3wscctlvdt7"]
+
+[ext_resource type="Texture2D" uid="uid://btarmtw2e3olw" path="res://assets/ui/book.png" id="1_yvwxj"]
+[ext_resource type="Script" path="res://components/UI/bookofupgrades.gd" id="2_cqc0k"]
+[ext_resource type="FontFile" uid="uid://b0f3lx6x2ei1i" path="res://assets/font/BLKCHCRY.TTF" id="3_c84ky"]
+[ext_resource type="PackedScene" uid="uid://c5484isel7t1j" path="res://components/UI/animator.tscn" id="4_v828s"]
+[ext_resource type="FontFile" uid="uid://dbuptrhrkwysm" path="res://assets/font/MedievalSharp-Regular.ttf" id="5_f0g3q"]
+[ext_resource type="Script" path="res://components/UI/1.gd" id="5_wl2u0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uvhl1"]
+texture = ExtResource("1_yvwxj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3iy4k"]
+
+[node name="Book" type="Panel"]
+anchors_preset = -1
+anchor_top = 0.011
+anchor_right = 0.347
+anchor_bottom = 0.439
+offset_top = -7.128
+offset_right = 0.25592
+offset_bottom = -6.47202
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 0.0170255
+theme_override_styles/panel = SubResource("StyleBoxTexture_uvhl1")
+script = ExtResource("2_cqc0k")
+
+[node name="tower_name" type="RichTextLabel" parent="."]
+modulate = Color(0.252533, 0.0743777, 0.0365185, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.088
+anchor_top = 0.105
+anchor_right = 0.468
+anchor_bottom = 0.221
+offset_left = -61.009
+offset_top = -17.749
+offset_right = 530.991
+offset_bottom = 108.003
+rotation = -0.0702474
+scale = Vector2(0.205, 0.205)
+pivot_offset = Vector2(74, 21)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = -15
+theme_override_fonts/normal_font = ExtResource("3_c84ky")
+theme_override_font_sizes/normal_font_size = 126
+bbcode_enabled = true
+text = "Tower Name"
+tab_size = 7
+
+[node name="Animator" parent="." instance=ExtResource("4_v828s")]
+enable_anims = false
+
+[node name="pages" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.058
+anchor_top = 0.722
+anchor_right = 0.47
+anchor_bottom = 0.837
+offset_left = -0.882936
+offset_top = -6.06773
+offset_right = -0.682922
+offset_bottom = 8.96228
+rotation = -0.0509939
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="1" type="Button" parent="pages"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.141176, 0.0666667, 0.0196078, 1)
+theme_override_fonts/font = ExtResource("3_c84ky")
+theme_override_font_sizes/font_size = 201
+text = "1"
+flat = true
+script = ExtResource("5_wl2u0")
+
+[node name="2" type="Button" parent="pages"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.141176, 0.0666667, 0.0196078, 1)
+theme_override_fonts/font = ExtResource("3_c84ky")
+theme_override_font_sizes/font_size = 201
+text = "1"
+flat = true
+script = ExtResource("5_wl2u0")
+
+[node name="3" type="Button" parent="pages"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.141176, 0.0666667, 0.0196078, 1)
+theme_override_fonts/font = ExtResource("3_c84ky")
+theme_override_font_sizes/font_size = 201
+text = "1"
+flat = true
+script = ExtResource("5_wl2u0")
+
+[node name="4" type="Button" parent="pages"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.141176, 0.0666667, 0.0196078, 1)
+theme_override_fonts/font = ExtResource("3_c84ky")
+theme_override_font_sizes/font_size = 201
+text = "1"
+flat = true
+script = ExtResource("5_wl2u0")
+
+[node name="5" type="Button" parent="pages"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.141176, 0.0666667, 0.0196078, 1)
+theme_override_fonts/font = ExtResource("3_c84ky")
+theme_override_font_sizes/font_size = 201
+text = "1"
+flat = true
+script = ExtResource("5_wl2u0")
+
+[node name="tower_icon" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.142
+anchor_top = 0.198
+anchor_right = 0.358
+anchor_bottom = 0.488
+offset_left = 0.145275
+offset_top = -0.00549698
+offset_right = -3.25471
+offset_bottom = 3.3745
+rotation = -0.0399052
+theme_override_styles/panel = SubResource("StyleBoxTexture_3iy4k")
+
+[node name="description" type="RichTextLabel" parent="."]
+modulate = Color(0.106389, 0.0178441, 0.00775929, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.097
+anchor_top = 0.541
+anchor_right = 0.443
+anchor_bottom = 0.736
+offset_left = -71.8
+offset_top = -9.39799
+offset_right = 756.8
+offset_bottom = 264.392
+rotation = -0.0702474
+scale = Vector2(0.15, 0.15)
+pivot_offset = Vector2(74, 20.9998)
+theme_override_constants/shadow_outline_size = -15
+theme_override_fonts/normal_font = ExtResource("5_f0g3q")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "Tower Name"
+tab_size = 7
+
+[node name="upgradeName" type="RichTextLabel" parent="."]
+modulate = Color(0.106389, 0.0178441, 0.00775929, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.084
+anchor_top = 0.428
+anchor_right = 0.443
+anchor_bottom = 0.506
+offset_left = -1.6
+offset_top = 10.016
+offset_right = -1.19998
+offset_bottom = 12.332
+rotation = -0.0702474
+theme_override_constants/shadow_outline_size = -15
+theme_override_fonts/normal_font = ExtResource("3_c84ky")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Tower Name"
+scroll_active = false
+tab_size = 7
+
+[node name="close" type="Button" parent="."]
+modulate = Color(0.0110876, 0.0110876, 0.0110876, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.899
+anchor_top = 0.09
+anchor_right = 0.964
+anchor_bottom = 0.201
+offset_left = -0.124207
+offset_top = -0.136351
+offset_right = -0.124176
+offset_bottom = 0.00564957
+text = "X"
+flat = true
+
+[connection signal="pressed" from="close" to="." method="_on_close_pressed"]

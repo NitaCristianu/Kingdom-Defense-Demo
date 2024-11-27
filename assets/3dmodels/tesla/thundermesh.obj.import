@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ccn1uf6bgboym"
+path="res://.godot/imported/thundermesh.obj-88e57f8b453464ae293e7d9ddc5b676f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/thundermesh.obj-88e57f8b453464ae293e7d9ddc5b676f.mesh"]
+
+source_file="res://assets/3dmodels/tesla/thundermesh.obj"
+dest_files=["res://.godot/imported/thundermesh.obj-88e57f8b453464ae293e7d9ddc5b676f.mesh", "res://.godot/imported/thundermesh.obj-88e57f8b453464ae293e7d9ddc5b676f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
