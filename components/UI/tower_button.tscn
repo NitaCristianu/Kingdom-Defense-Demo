@@ -1,10 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhkwes57ltdei"]
+[gd_scene load_steps=16 format=3 uid="uid://dhkwes57ltdei"]
 
 [ext_resource type="Texture2D" uid="uid://bm356mxm5a3mp" path="res://assets/ui/badge.png" id="1_2xjdo"]
 [ext_resource type="Script" path="res://components/UI/tower_button.gd" id="2_0v31a"]
-[ext_resource type="PackedScene" path="res://components/UI/animator.tscn" id="3_5kpk5"]
+[ext_resource type="PackedScene" uid="uid://c5484isel7t1j" path="res://components/UI/animator.tscn" id="3_5kpk5"]
+[ext_resource type="Texture2D" uid="uid://d01charvj4u4v" path="res://assets/resources/wood.png" id="4_1y0c5"]
+[ext_resource type="FontFile" uid="uid://dbuptrhrkwysm" path="res://assets/font/MedievalSharp-Regular.ttf" id="5_msh26"]
+[ext_resource type="Texture2D" uid="uid://cway0ffn0nuio" path="res://assets/resources/stone.png" id="6_2t33m"]
+[ext_resource type="Texture2D" uid="uid://yfuamp1h6s4k" path="res://assets/resources/gold.png" id="7_70v1p"]
+[ext_resource type="Texture2D" uid="uid://7jfhgmvuwn08" path="res://assets/resources/mana.png" id="8_fgfxj"]
+[ext_resource type="Script" path="res://components/UI/node.gd" id="9_kb5k5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_52qms"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1tly1"]
+texture = ExtResource("4_1y0c5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_16lks"]
+font = ExtResource("5_msh26")
+font_size = 51
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7css5"]
+texture = ExtResource("6_2t33m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ywtr"]
+texture = ExtResource("7_70v1p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_75saa"]
+texture = ExtResource("8_fgfxj")
 
 [node name="TowerButton" type="TextureButton"]
 custom_minimum_size = Vector2(100, 100)
@@ -32,3 +54,94 @@ grow_vertical = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 theme_override_styles/panel = SubResource("StyleBoxTexture_52qms")
+
+[node name="resources" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = -1.858
+anchor_right = 1.061
+anchor_bottom = -0.022
+offset_left = -17.0
+offset_top = -32.2
+offset_right = 17.9
+offset_bottom = 32.2
+scale = Vector2(0.74, 0.74)
+pivot_offset = Vector2(69, 248)
+mouse_filter = 2
+alignment = 2
+
+[node name="wood" type="HBoxContainer" parent="resources"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resources/wood"]
+texture_repeat = 3
+custom_minimum_size = Vector2(57.91, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1tly1")
+
+[node name="Label" type="Label" parent="resources/wood"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_16lks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="stone" type="HBoxContainer" parent="resources"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resources/stone"]
+texture_repeat = 3
+custom_minimum_size = Vector2(57.91, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7css5")
+
+[node name="Label" type="Label" parent="resources/stone"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_16lks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gold" type="HBoxContainer" parent="resources"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resources/gold"]
+texture_repeat = 3
+custom_minimum_size = Vector2(57.91, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0ywtr")
+
+[node name="Label" type="Label" parent="resources/gold"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_16lks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mana" type="HBoxContainer" parent="resources"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resources/mana"]
+texture_repeat = 3
+custom_minimum_size = Vector2(57.91, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_75saa")
+
+[node name="Label" type="Label" parent="resources/mana"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_16lks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationComponent" type="Node" parent="resources"]
+script = ExtResource("9_kb5k5")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

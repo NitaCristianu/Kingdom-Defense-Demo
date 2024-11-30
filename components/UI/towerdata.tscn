@@ -1,0 +1,160 @@
+[gd_scene load_steps=7 format=3 uid="uid://dt866adjnifik"]
+
+[ext_resource type="FontFile" uid="uid://dbuptrhrkwysm" path="res://assets/font/MedievalSharp-Regular.ttf" id="1_atf6h"]
+[ext_resource type="PackedScene" uid="uid://0p8fq1w0ggrt" path="res://components/UI/back.tscn" id="2_h8o7c"]
+[ext_resource type="Script" path="res://components/UI/back.gd" id="3_1qsf8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wy5f3"]
+bg_color = Color(0.0142752, 0.0142752, 0.0142752, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vlah4"]
+font = ExtResource("1_atf6h")
+font_size = 91
+
+[sub_resource type="LabelSettings" id="LabelSettings_ssnm0"]
+font = ExtResource("1_atf6h")
+font_size = 31
+font_color = Color(0.867276, 0.00244759, 0.121224, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wy5f3")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.348
+anchor_top = 0.032
+anchor_right = 0.663
+anchor_bottom = 0.146
+offset_left = -0.160034
+offset_top = 0.439999
+offset_right = 0.039917
+offset_bottom = 0.319992
+text = "TOWERS"
+label_settings = SubResource("LabelSettings_vlah4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" parent="." instance=ExtResource("2_h8o7c")]
+layout_mode = 1
+anchor_top = 0.9
+anchor_right = 0.094
+offset_top = -44.064
+offset_right = 51.84
+offset_bottom = -0.832031
+grow_vertical = 1
+script = ExtResource("3_1qsf8")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.175
+anchor_top = 0.238
+anchor_right = 0.769
+anchor_bottom = 0.317
+offset_left = -3.05176e-05
+offset_top = -0.0400085
+offset_right = -0.480103
+offset_bottom = -0.360016
+text = "Cheap and effective, use it when out of resources."
+label_settings = SubResource("LabelSettings_ssnm0")
+
+[node name="data" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.152
+anchor_top = 0.186
+anchor_right = 0.86
+anchor_bottom = 0.824
+offset_left = 0.159973
+offset_top = 0.119995
+offset_right = 0.799927
+offset_bottom = 0.0799561
+theme_override_fonts/normal_font = ExtResource("1_atf6h")
+theme_override_font_sizes/normal_font_size = 61
+text = "1. Crossbow
+
+2. Mortar
+
+3. Inferno
+
+4. Tesla
+
+5. Worker"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.175
+anchor_top = 0.371333
+anchor_right = 0.769
+anchor_bottom = 0.450333
+offset_left = -3.05176e-05
+offset_top = -0.0400085
+offset_right = -0.480103
+offset_bottom = -0.360016
+text = "Very powerfull, but very slow, use it to target strong enemies
+(hits multiple enemies at once)"
+label_settings = SubResource("LabelSettings_ssnm0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.175
+anchor_top = 0.510222
+anchor_right = 0.769
+anchor_bottom = 0.589222
+offset_left = -3.05176e-05
+offset_top = -0.0400085
+offset_right = -0.480103
+offset_bottom = -0.360016
+text = "The perfect balance between power and cost
+( does damage after initial hit)"
+label_settings = SubResource("LabelSettings_ssnm0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.175
+anchor_top = 0.638926
+anchor_right = 0.769
+anchor_bottom = 0.717926
+offset_left = -3.05176e-05
+offset_top = -0.0400085
+offset_right = -0.480103
+offset_bottom = -0.360016
+text = "This is the definitive tower, a single ROG Overdrive Tesla can carry
+you the entire game ... maybe (hits multiple enemies at once)"
+label_settings = SubResource("LabelSettings_ssnm0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.175
+anchor_top = 0.765778
+anchor_right = 0.769
+anchor_bottom = 0.844778
+offset_left = -3.05176e-05
+offset_top = -0.0400085
+offset_right = -0.480103
+offset_bottom = -0.360016
+text = "Place him whenever you need, he will gather resources"
+label_settings = SubResource("LabelSettings_ssnm0")
+metadata/_edit_use_anchors_ = true

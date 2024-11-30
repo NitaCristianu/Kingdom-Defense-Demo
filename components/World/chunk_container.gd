@@ -84,7 +84,7 @@ func getCells(center: Cell, chunk : Chunk, size : int) -> Array[Cell]:
 		cells.append(cell_class)
 	return cells
 
-func get_directions(count : int, chunk_pos : Vector2i) -> Array:
+func get_directions(count : int, chunk_pos : Vector2i, from : Vector2i) -> Array:
 	var choices := [Vector2i(0, 1), Vector2i(-1, 0), Vector2i(1, 0), Vector2i(0, -1)]
 	
 	choices = choices.filter(func (choice) : return not chunk_exists(choice + chunk_pos))
@@ -148,11 +148,17 @@ func extend_chunk(pos : Vector2i, exitIndex:int = 0):
 	var from: Vector2i = -chunk.path.deoffsetVector(chunk.path.to[exitIndex])
 	var chunk_to : Vector2i = chunk.path.deoffsetVector(chunk.path.to[exitIndex])
 	var newcoord: Vector2i = pos + chunk_to.sign()
-	var exits: int = 2 if (randi() % 15 == 1) else 1
-	var directions := get_directions(exits, newcoord)
+	#var exits: int = 2 if (randi() % 15 == 1) else 1
+	var exits: int = 1
+	var directions := get_directions(exits, newcoord, from)
+	
 	if directions.size() == 0:
 		print("STOP")
 		return null
+		
+	if from == -directions[0]:
+		extension.chunk_instance_type = extension.chunkInstanceType.STRAIGHT
+	else: extension.chunk_instance_type = extension.chunkInstanceType.TURN
 		
 	extension.prev_chunk = chunk
 	var path: ChunkPathGenerator = ChunkPathGenerator.new()
@@ -191,8 +197,8 @@ func get_chunks() -> Array:
 	return get_children().slice(1)
 	
 func set_config_file():
-	Configuration.write_ws("CHUNK", "SIZE", CHUNK_SIZE)
-	Configuration.write_ws("CHUNK", "NOISE_ID", randi())
+	Configuration.write("CHUNK", "SIZE", CHUNK_SIZE)
+	Configuration.write("CHUNK", "NOISE_ID", randi())
 
 func set_terrain():
 	ChunkNoiseTexture.noise = FastNoiseLite.new()

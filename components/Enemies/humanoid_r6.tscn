@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://cioykeoccu00m"]
+[gd_scene load_steps=13 format=4 uid="uid://cioykeoccu00m"]
 
 [ext_resource type="Script" path="res://components/Enemies/humanoid_r_6.gd" id="1_eclfa"]
+[ext_resource type="Shader" path="res://components/Enemies/golden_slime.gdshader" id="2_q2kmo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0g40o"]
 resource_name = "b0b0b0"
@@ -42,7 +43,30 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8wa3t")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_83wjv"]
+render_priority = 0
+shader = ExtResource("2_q2kmo")
+shader_parameter/slime_color = Color(1, 0.84, 0, 1)
+shader_parameter/metallic = 0.8
+shader_parameter/roughness = 0.4
+shader_parameter/transparency = 0.8
+shader_parameter/refraction = 0.1
+shader_parameter/wobble_intensity = 0.01
+shader_parameter/wobble_speed = 4.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6wln"]
+render_priority = 0
+shader = ExtResource("2_q2kmo")
+shader_parameter/slime_color = Color(1, 0.84, 0, 1)
+shader_parameter/metallic = 0.8
+shader_parameter/roughness = 0.4
+shader_parameter/transparency = 0.8
+shader_parameter/refraction = 0.1
+shader_parameter/wobble_intensity = 0.01
+shader_parameter/wobble_speed = 4.5
+
 [sub_resource type="BoxMesh" id="BoxMesh_m77yy"]
+material = SubResource("ShaderMaterial_h6wln")
 
 [sub_resource type="Animation" id="Animation_g5yra"]
 length = 0.001
@@ -127,6 +151,9 @@ _data = {
 "walk": SubResource("Animation_70ucx")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7uq1r"]
+size = Vector3(1.594, 1.987, 0.838)
+
 [node name="humanoid r6" type="Node3D"]
 script = ExtResource("1_eclfa")
 
@@ -137,6 +164,7 @@ transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 
 transform = Transform3D(0.996857, 0, -0.00612433, 0, 0.996876, 0, 0.00612433, 0, 0.996857, 3.1194, -0.948539, 3.7886)
 mesh = SubResource("ArrayMesh_6ehtp")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_83wjv")
 
 [node name="leftleg" type="MeshInstance3D" parent="meshes"]
 transform = Transform3D(0.996876, 0, 0, 0, 1.96236, 0, 0, 0, 0.932079, 0.498438, 0.392472, 0.5)
@@ -167,3 +195,10 @@ skeleton = NodePath("../leftleg")
 libraries = {
 "": SubResource("AnimationLibrary_uhuk4")
 }
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["enemy_hitbox"]]
+transform = Transform3D(0.721234, 0, 0, 0, 0.721234, 0, 0, 0, 0.721234, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, -0.0237914, 1.11767, -0.0205104)
+shape = SubResource("BoxShape3D_7uq1r")

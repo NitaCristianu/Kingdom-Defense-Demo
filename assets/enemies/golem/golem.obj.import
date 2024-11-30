@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bwoknbgxooaao"
+path="res://.godot/imported/golem.obj-d1b8cbd0fdb2e03bf3e5e2d61aa323b3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/golem.obj-d1b8cbd0fdb2e03bf3e5e2d61aa323b3.mesh"]
+
+source_file="res://assets/enemies/golem/golem.obj"
+dest_files=["res://.godot/imported/golem.obj-d1b8cbd0fdb2e03bf3e5e2d61aa323b3.mesh", "res://.godot/imported/golem.obj-d1b8cbd0fdb2e03bf3e5e2d61aa323b3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

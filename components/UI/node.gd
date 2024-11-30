@@ -6,6 +6,7 @@ class_name AnimationComponent extends Node
 @export var time : float = 0.33
 @export var transition_type : Tween.TransitionType = Tween.TRANS_CUBIC
 @export var enable_anims : bool = true
+#@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var target : Control
 var default_scale : Vector2
@@ -33,14 +34,17 @@ func on_hover() -> void:
 		add_tween("scale", hover_scale, time)
 	
 func off_hover() -> void:
-	if is_queued_for_deletion() or not is_instance_valid(self) or not get_tree(): return
+	if is_queued_for_deletion() or not is_instance_valid(self): return
 	if enable_anims:
-		add_tween("scale", default_scale, time)
+		if get_tree():
+			add_tween("scale", default_scale, time)
 
 func on_pressed() -> void:
-	if is_queued_for_deletion() or not is_instance_valid(self) or not get_tree(): return
+	if is_queued_for_deletion() or not is_instance_valid(self): return
 	if enable_anims:
-		add_tween("scale", default_scale, time / 2).finished.connect(func(): add_tween("scale", hover_scale, time / 2))
+		#audio_stream_player_2d.play()
+		if get_tree():
+			add_tween("scale", default_scale, time / 2).finished.connect(func(): add_tween("scale", hover_scale, time / 2))
 
 func add_tween(property : String, value: Variant, seconds : float) -> Tween:
 	if is_queued_for_deletion() or not is_instance_valid(self) or not get_tree(): return

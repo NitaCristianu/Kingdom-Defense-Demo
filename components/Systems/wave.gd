@@ -4,6 +4,7 @@ class_name WaveHandler
 
 @onready var chunk_container: ChunkContainerClass = $"../ChunkContainer"
 @onready var enemies: Node3D = $"../Enemies"
+@onready var new_wave: AudioStreamPlayer3D = $newWave
 
 var maxWaves = -1
 var wave: int =-1
@@ -27,6 +28,20 @@ func spawnEnemy(chunk: Chunk, exitIndex : int, enemyName : String):
 	var enemy_class : Resource
 	if enemyName == "r6":
 		enemy_class= preload("res://components/Enemies/humanoid_r6.tscn")
+	elif enemyName == "golden slime":
+		enemy_class= preload("res://components/Enemies/golden_slime.tscn")
+	elif enemyName == "super slime":
+		enemy_class= preload("res://components/Enemies/super_slime.tscn")
+	elif enemyName == "glass golem":
+		enemy_class= preload("res://components/Enemies/glass_golem.tscn")
+	elif enemyName == "pixel knight":
+		enemy_class= preload("res://components/Enemies/pixel_knight.tscn")
+	elif enemyName == "goblin":
+		enemy_class= preload("res://components/Enemies/goblin.tscn")
+	elif enemyName == "spider":
+		enemy_class= preload("res://components/Enemies/spider.tscn")
+	elif enemyName == "solider":
+		enemy_class= preload("res://components/Enemies/solider.tscn")
 	else:
 		enemy_class= preload("res://components/Enemies/enemy.tscn")
 		
@@ -35,6 +50,7 @@ func spawnEnemy(chunk: Chunk, exitIndex : int, enemyName : String):
 	
 	enemy.health = data.Health
 	enemy.maxhealth = enemy.health
+	enemy.enemy_name = enemyName
 	enemy.speed = data.Speed
 	enemy.reward = data.Reward
 	enemy.shadow = data.shadow
@@ -48,15 +64,35 @@ func startWave(chunk_pos: Vector2i, exitIndex: int):
 	var extension: Chunk = chunk_container.extend_chunk(chunk_pos, exitIndex)
 	# modify to handle every single map end  
 	if not extension: extension = chunk_container.get_chunk(chunk_pos)
-	var nOfEnemies = 4; # number of eneies
+	var waveData = Configuration.WaveData
+	
+	var reward = Configuration.read("GAME_DATA", "REWARD")
+	var difficulty = -1
+	if reward == 2:
+		difficulty = 0
+	elif reward == 8:
+		difficulty = 1
+	else:
+		difficulty = 2
+	new_wave.play()
+	var waves = waveData[difficulty]
+	if waves.size() <= wave + 1 : return
+	var enemies = waves[wave+1]
+	var nOfEnemies = enemies.size()
 	
 	if nOfEnemies > 0:
 		disableExtendbuttons()
 	wave_start.emit(wave+1)
 	
-	for i in nOfEnemies:
-		spawnEnemy(extension, randi() % extension.path.to.size(), "r6")
-		await get_tree().create_timer(.2).timeout
+	
+	for miniwave in enemies:
+		var enemy_name = miniwave[0]
+		var ammount = miniwave[1]
+		var delay = miniwave[2]
+		
+		for i in ammount:
+			spawnEnemy(extension, randi() % extension.path.to.size(), enemy_name)
+			await get_tree().create_timer(delay).timeout
 		
 	for chunk: Chunk in chunk_container.get_chunks():
 		for structure in chunk.structs:
@@ -65,7 +101,7 @@ func startWave(chunk_pos: Vector2i, exitIndex: int):
 		if tower is Worker: tower.thinking.emit()
 	
 	wave += 1
-	if wave % 3 == 0: (get_node("/root/main/Player") as Player).incrementCurrency(0, 0, 0, 1)
+	if wave % 3 == 0: (get_node("/root/main/Player/") as Player).incrementCurrency(0, 0, 0, 1)
 
 func disableExtendbuttons():
 	for el in get_tree().get_nodes_in_group("wave_starters"):
@@ -78,11 +114,11 @@ func toggleExtendButtons():
 func _ready() -> void:
 	maxWaves = Configuration.read("GAME_DATA", "REWARD")
 	if maxWaves == 2:
-		maxWaves = 10
+		maxWaves = 8
 	elif maxWaves == 8:
-		maxWaves = 25
+		maxWaves = 15
 	else:
-		maxWaves = 35
+		maxWaves = 20
 	toggleExtendButtons()
 
 func _on_enemies_child_exiting_tree(node: Node) -> void:

@@ -2,21 +2,64 @@ extends Node3D
 
 class_name Chunk
 
-@onready var camera_3d: Camera3D = %Camera
-@onready var camera_light: SpotLight3D = %CameraLight
-
 enum chunkType {base, path}
+enum chunkInstanceType {BASE, STRAIGHT, TURN}
 
+var chunk_instance_type : chunkInstanceType = chunkInstanceType.BASE
 var chunk_container: ChunkContainerClass
 var cells: Array[Cell] = []
 var structs : Array[Structure] = []
 var prev_chunk: Chunk
-var chunk_size = -1 # inited in the init function
+var chunk_size = 12 # inited in the init function
 var chunk_pos : Vector2i
 var chunk_type: chunkType
 const render_debug: bool = false
 var path : ChunkPathGenerator
 var removeWhenExtendedatIndex : Dictionary = {}
+
+@onready var straight: MeshInstance3D = $Straight
+@onready var turn: MeshInstance3D = $Turn
+@onready var base: MeshInstance3D = $Base
+
+func setChunkInstance() -> void:
+	if chunk_instance_type == chunkInstanceType.STRAIGHT:
+		base.queue_free()
+		turn.queue_free()
+		var t = path.deoffsetVector(path.to[0]).sign()
+		var f = path.deoffsetVector(path.from).sign()
+		if t.x == 0:
+			straight.rotate_y(PI/2)
+	elif chunk_instance_type == chunkInstanceType.BASE:
+		straight.queue_free()
+		turn.queue_free()
+	elif chunk_instance_type == chunkInstanceType.TURN:
+		straight.queue_free()
+		base.queue_free()
+		var t = path.deoffsetVector(path.to[0]).sign()
+		var f = path.deoffsetVector(path.from).sign()
+		
+	#		     (0, 1)
+	#		    ---------
+	#		    |       |  (1, 0)
+	#(-1, 0)    |       |
+	#		    ---------
+	#		     (0, -1)	
+		if t.y == -1 and f.x == -1:
+			turn.rotate_y(-PI/2)
+		elif t.y == -1 and f.x == 1:
+			turn.rotate_y(-2 * PI/2)
+		elif t.y == 1 and f.x == 1:
+			turn.rotate_y(PI/2)
+		elif t.y == 1 and f.x == -1:
+			pass
+		elif t.x == -1 and f.y == -1:
+			turn.rotate_y(-PI/2)
+		elif t.x == -1 and f.y == 1:
+			pass
+		elif t.x == 1 and f.y == -1:
+			turn.rotate_y(PI)
+		elif t.x == 1 and f.y == 1:
+			turn.rotate_y(PI/2)
 
 func getPosFromIndex(index : int):
 	var u = index%(chunk_size + 1)
@@ -49,7 +92,11 @@ func load_structs():
 	var tree_class = preload("res://components/Structures/tree.tscn")
 	var rock_class = preload("res://components/Structures/rock.tscn")
 	
-	for i in 5:
+	var i = 0
+	var rock = 0
+	var tree = 0
+	
+	while rock < 2 or tree < 2:
 		var index = randi_range(0, (chunk_size+1)*(chunk_size+1)-1)
 		var xy = getPosFromIndex(index)
 		if path.is_cell_path(xy) or cells[index].type != Cell.types.grass1: continue
@@ -57,9 +104,11 @@ func load_structs():
 		if randi() % 2 == 0:
 			struct = tree_class.instantiate()
 			struct.init(cells[index], struct.structs.TREE)
+			tree+=1
 		else:
 			struct = rock_class.instantiate()
 			struct.init(cells[index], struct.structs.ROCK)
+			rock+=1
 		structs.append(struct)
 		add_child(struct)
 
@@ -81,9 +130,9 @@ func set_cell(pos : Vector2i, type : Cell.types):
 		
 func init_chunk(pos : Vector2i, type = chunkType.path):
 	var size: int = Configuration.read("CHUNK", "SIZE")
-	chunk_size = size
 	chunk_pos = pos
 	chunk_type = type
+	
 	for x in size + 1:
 		for y in size + 1:
 			var mod_y := y > 0 || y < size # size = size + 1 (-1)
@@ -105,21 +154,16 @@ func add_extend_button()->void:
 		var object = loaded.instantiate()
 		object.add_to_group("wave_starters")
 		
+		add_child(object)
 		object.global_position = Vector3(pos.x - chunk_size/2 + sign(pos.x) * 2, 1.5, pos.y - chunk_size/2 + sign(pos.y) * 2)
 		object.chunk = self
 		object.index = i
-		add_child(object)
 		if not removeWhenExtendedatIndex.get(i):
 			removeWhenExtendedatIndex[i] = []
 		removeWhenExtendedatIndex[i].append(object)
 		i+=1
 
 func render_chunk():
-	for x in chunk_size + 1:
-		for y in chunk_size + 1:
-			var cell := cells[x+y*(chunk_size+1)]
-			add_child(cell.get_instance())
-	
 	add_extend_button()
 
 func start(_path):
@@ -127,9 +171,9 @@ func start(_path):
 	path = _path
 	if path:
 		var bitmap := path.bitmap
-		for x in chunk_size + 1:
-			for y in chunk_size + 1:
-				var ind = x + y * (chunk_size+1)
+		for x in 12 + 1:
+			for y in 12 + 1:
+				var ind = x + y * (12+1)
 				
 				if bitmap.get_bit(x, y):
 					cells[ind].type = Cell.types.path
@@ -138,3 +182,4 @@ func start(_path):
 	path.chunk = self
 	path.setCurves()
 	load_structs()
+	call_deferred("setChunkInstance")

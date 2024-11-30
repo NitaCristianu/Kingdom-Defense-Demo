@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://g1638jma1dls"]
+
+[ext_resource type="Script" path="res://components/Enemies/goblin.gd" id="1_ktx3r"]
+[ext_resource type="PackedScene" uid="uid://b456mxlfcmap8" path="res://components/Enemies/goblin_proyect_end.tscn" id="2_yjwoh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6jyaj"]
+size = Vector3(0.888246, 1.3261, 0.906766)
+
+[node name="Goblin" type="Node3D"]
+script = ExtResource("1_ktx3r")
+
+[node name="Goblin_ProyectEnd" parent="." instance=ExtResource("2_yjwoh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.679039, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["enemy_hitbox"]]
+transform = Transform3D(0.721234, 0, 0, 0, 0.721234, 0, 0, 0, 0.721234, 0, -0.308191, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.999982, 0, 0, 0, 0.999982, 0, 0, 0, 0.999982, 0.154706, 0.28024, -0.195056)
+shape = SubResource("BoxShape3D_6jyaj")

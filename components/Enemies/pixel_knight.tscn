@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://se7yldqtsr15"]
+
+[ext_resource type="Script" path="res://components/Enemies/pixel_knight.gd" id="1_3ktp0"]
+[ext_resource type="PackedScene" uid="uid://dwnn00glpkctu" path="res://assets/enemies/knight/source/model.gltf" id="1_4mqov"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ilmbj"]
+size = Vector3(1.005, 2.901, 1.021)
+
+[node name="pixel knight" type="Node3D"]
+script = ExtResource("1_3ktp0")
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_4mqov")]
+transform = Transform3D(0.24, 0, 0, 0, 0.24, 0, 0, 0, 0.24, 0, -0.3, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["enemy_hitbox"]]
+transform = Transform3D(0.721234, 0, 0, 0, 0.721234, 0, 0, 0, 0.721234, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, -0.0162914, 0.716673, 0.136989)
+shape = SubResource("BoxShape3D_ilmbj")

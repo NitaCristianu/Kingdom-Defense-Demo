@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy7pg2ykovysj"]
+
+[ext_resource type="PackedScene" uid="uid://dwnn00glpkctu" path="res://assets/enemies/knight/source/model.gltf" id="1_ynojb"]
+[ext_resource type="Script" path="res://components/Enemies/kinghtmesh.gd" id="2_al458"]
+
+[node name="blockbench_export" instance=ExtResource("1_ynojb")]
+script = ExtResource("2_al458")
+
+[node name="Skeleton3D" parent="." index="0"]
+bones/6/rotation = Quaternion(0.349362, -0.0447287, 0.212783, 0.91141)
+
+[node name="Chest" parent="Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Arm" parent="Skeleton3D" index="1"]
+transform = Transform3D(0.905445, -0.419119, 0.0671445, 0.356613, 0.665339, -0.655859, 0.230209, 0.617789, 0.751891, 1.61732, 2.39105, -3.38039)
+
+[node name="Elbow" parent="Skeleton3D" index="2"]
+transform = Transform3D(0.905445, 0.190068, 0.37953, 0.356613, -0.825575, -0.437324, 0.230209, 0.531318, -0.815294, -1.71007, 8.50812, -3.43795)
+
+[node name="Forearm" parent="Skeleton3D" index="3"]
+transform = Transform3D(0.905445, 0.190068, 0.37953, 0.356613, -0.825575, -0.437324, 0.230209, 0.531318, -0.815294, -0.537391, 7.29538, -2.51102)
+
+[node name="Palm" parent="Skeleton3D" index="4"]
+transform = Transform3D(0.967892, 0.239635, 0.0758952, 0.25136, -0.92494, -0.285138, 0.00186932, 0.29506, -0.955477, -0.614655, 7.59993, -1.62229)
+
+[node name="cuboid" parent="Skeleton3D" index="5"]
+transform = Transform3D(0.967892, 0.239635, 0.0758952, 0.25136, -0.92494, -0.285138, 0.00186932, 0.29506, -0.955477, -0.614655, 7.59993, -1.62229)
+
+[node name="cuboid_2" parent="Skeleton3D" index="6"]
+transform = Transform3D(0.236358, 0.134896, 0.962257, -0.929037, -0.25874, 0.26447, 0.28465, -0.956482, 0.064168, 0.826463, 6.74634, 0.44242)
+
+[node name="cuboid_3" parent="Skeleton3D" index="7"]
+transform = Transform3D(-0.134896, 0.962257, -0.236358, 0.25874, 0.26447, 0.929037, 0.956482, 0.064168, -0.28465, 0.826463, 6.74634, 0.44242)
+
+[node name="cuboid_4" parent="Skeleton3D" index="8"]
+transform = Transform3D(0.236358, 0.134896, 0.962257, -0.929037, -0.25874, 0.26447, 0.28465, -0.956482, 0.064168, 0.826463, 6.74634, 0.44242)
+
+[node name="gem" parent="Skeleton3D" index="9"]
+transform = Transform3D(0.0717444, 0.262516, 0.962257, -0.473972, -0.839885, 0.26447, 0.877612, -0.475057, 0.064168, 1.14305, 6.36855, -1.06502)
+
+[node name="plane" parent="Skeleton3D" index="10"]
+transform = Transform3D(0.236358, 0.962257, -0.134896, -0.929037, 0.26447, 0.25874, 0.28465, 0.064168, 0.956482, 0.913005, 6.40601, -0.6333)
+
+[node name="plane_2" parent="Skeleton3D" index="11"]
+transform = Transform3D(-0.236358, -0.962257, -0.134896, 0.929037, -0.26447, 0.25874, -0.28465, -0.064168, 0.956482, 1.04231, 6.50623, -0.643879)
+
+[node name="Arm_2" parent="Skeleton3D" index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.289598, 4.80203, -0.133628)
+
+[node name="Elbow_2" parent="Skeleton3D" index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13419, -0.786287, -0.35019)
+
+[node name="Forearm_2" parent="Skeleton3D" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.291488, 0.930305, -0.130478)
+
+[node name="Palm_2" parent="Skeleton3D" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.31638e-16, 0, -1.31638e-16, 1, 0.291488, 0.930305, -0.130478)
+
+[node name="cuboid_5" parent="Skeleton3D" index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.31638e-16, 0, -1.31638e-16, 1, 0.291488, 0.930305, -0.130478)
+
+[node name="Head_2" parent="Skeleton3D" index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Neck" parent="Skeleton3D" index="18"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 6.125, 0.1875)
+
+[node name="Hip" parent="Skeleton3D" index="19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Upper leg" parent="Skeleton3D" index="20"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.640625, 2.3125, 0)
+
+[node name="Knee" parent="Skeleton3D" index="21"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.640625, 2.3125, 0)
+
+[node name="Feet" parent="Skeleton3D" index="22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.078125, 2, 0)
+
+[node name="Upper leg_2" parent="Skeleton3D" index="23"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.421875, 2.3125, 0)
+
+[node name="Knee_2" parent="Skeleton3D" index="24"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.421875, 2.3125, 0)
+
+[node name="Feet_2" parent="Skeleton3D" index="25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.140625, 2, 0)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "walking"

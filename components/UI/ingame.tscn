@@ -330,8 +330,8 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[connection signal="pressed" from="Panel/SpawnWorker" to="." method="_on_spawn_worker_pressed"]
 [connection signal="pressed" from="Panel/SpawnWorker" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Panel/SpawnCrossbow" to="." method="_on_spawn_crossbow_pressed"]
+[connection signal="pressed" from="Panel/SpawnWorker" to="." method="_on_spawn_worker_pressed"]
 [connection signal="pressed" from="Panel/SpawnCrossbow" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/SpawnCrossbow" to="." method="_on_spawn_crossbow_pressed"]
 [connection signal="pressed" from="Panel/SpawnTesla" to="." method="_on_spawn_tesla_pressed"]

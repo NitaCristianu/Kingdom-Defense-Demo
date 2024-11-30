@@ -8,6 +8,7 @@ var reward: int = 0
 var health  : float = maxhealth
 var inited = false
 var display_name : String = ""
+var enemy_name : String = ""
 var chunk: Chunk
 var pathindex: int
 var walked = 0
@@ -22,8 +23,8 @@ var burns = {
 	BURNS.POWERFIRE : 0
 }
 var burnDamages = {
-	BURNS.FIRE : 3,
-	BURNS.POWERFIRE : 5,
+	BURNS.FIRE : 5,
+	BURNS.POWERFIRE : 8,
 }
 # in seconds
 var burnFrequency = {
@@ -75,8 +76,8 @@ func delete():
 	queue_free()
 
 func die():
+	get_node("/root/main/Player").incrementCurrency(0, 0, reward, 0)
 	delete()
-	Configuration.player.incrementCurrency(0, 0, reward, 0)
 	
 func damage(dmg : float):
 	if dmg >= health:

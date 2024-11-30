@@ -1,0 +1,135 @@
+[gd_scene load_steps=16 format=3 uid="uid://dtohoore11eov"]
+
+[ext_resource type="Script" path="res://components/UI/enemy_data.gd" id="1_j2ea6"]
+[ext_resource type="Texture2D" uid="uid://bm356mxm5a3mp" path="res://assets/ui/badge.png" id="1_mlwu7"]
+[ext_resource type="FontFile" uid="uid://dbuptrhrkwysm" path="res://assets/font/MedievalSharp-Regular.ttf" id="2_o1pjf"]
+[ext_resource type="Script" path="res://components/UI/node.gd" id="4_2hfvi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uu314"]
+bg_color = Color(0.048, 0.048, 0.048, 0.584)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.216, 0.023, 0.147, 0.486)
+shadow_size = 10
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uvn45"]
+texture = ExtResource("1_mlwu7")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ekn4q"]
+font_size = 51
+font_color = Color(0.253055, 0.103202, 0.236563, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_av05v"]
+font = ExtResource("2_o1pjf")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_wb4ov"]
+font_size = 11
+font_color = Color(0.577216, 0.438111, 0.858064, 1)
+
+[sub_resource type="Gradient" id="Gradient_svslr"]
+colors = PackedColorArray(0, 0, 0, 1, 0.0885599, 0.0885599, 0.0885599, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fpoy8"]
+gradient = SubResource("Gradient_svslr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h0jdp"]
+texture = SubResource("GradientTexture1D_fpoy8")
+
+[sub_resource type="Gradient" id="Gradient_u1cy0"]
+colors = PackedColorArray(0, 0, 0, 1, 0.281936, 0.121437, 0.257311, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lno5o"]
+gradient = SubResource("Gradient_u1cy0")
+fill_to = Vector2(0.905983, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjxbu"]
+texture = SubResource("GradientTexture2D_lno5o")
+
+[node name="EnemyData" type="Control"]
+layout_mode = 3
+anchor_right = 0.23
+anchor_bottom = 0.092
+offset_right = 3.39999
+offset_bottom = 4.63999
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j2ea6")
+
+[node name="container" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(20, 20)
+
+[node name="background" type="Panel" parent="container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 11.125
+anchor_bottom = 2.6
+offset_right = -3.05176e-05
+theme_override_styles/panel = SubResource("StyleBoxFlat_uu314")
+
+[node name="container" type="HBoxContainer" parent="container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.225
+anchor_top = 0.2
+anchor_right = 10.925
+anchor_bottom = 2.175
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 35
+
+[node name="icon" type="Panel" parent="container/container"]
+self_modulate = Color(0.192636, 0.114697, 0.411672, 1)
+custom_minimum_size = Vector2(83.145, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uvn45")
+
+[node name="Label" type="Label" parent="container/container/icon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.415
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "!"
+label_settings = SubResource("LabelSettings_ekn4q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="container" type="VBoxContainer" parent="container/container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="title" type="Label" parent="container/container/container"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Zombie"
+label_settings = SubResource("LabelSettings_av05v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="description" type="Label" parent="container/container/container"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 20.0
+text = "Walks around"
+label_settings = SubResource("LabelSettings_wb4ov")
+
+[node name="ProgressBar" type="ProgressBar" parent="container/container/container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.455891, 0.195406, 0.577233, 1)
+theme_override_fonts/font = ExtResource("2_o1pjf")
+theme_override_styles/background = SubResource("StyleBoxTexture_h0jdp")
+theme_override_styles/fill = SubResource("StyleBoxTexture_cjxbu")
+value = 27.4
+rounded = true
+
+[node name="AnimationComponent" type="Node" parent="."]
+script = ExtResource("4_2hfvi")

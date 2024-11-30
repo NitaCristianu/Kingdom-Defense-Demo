@@ -15,6 +15,7 @@ var shootTween : Tween
 var target : Enemy
 
 @onready var arrow: MeshInstance3D = $support_node/support/back/arrow
+@onready var soundeffect: AudioStreamPlayer3D = $support_node/support/back/arrow/soundeffect
 
 func loadData():
 	var loaded: Dictionary = Configuration.getData_absolute().get("Entity").get("Tower").get(tower_name)
@@ -71,6 +72,7 @@ func shoot(enemy: Enemy):
 		
 		var futurePos = enemy.getFuturePos(enemy.speed/5)
 		shootTween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_IDLE).set_ease(Tween.EASE_IN_OUT)
+		soundeffect.play()
 		arrow.look_at(-futurePos)
 		shootTween.tween_method(arrowTween, arrow.global_position, futurePos, .2)
 		shootTween.connect("finished", self.reset_shoot)

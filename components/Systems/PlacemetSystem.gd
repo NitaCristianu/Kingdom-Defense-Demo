@@ -27,6 +27,9 @@ static func PlaceTower(tower_name: String, cell: Cell):
 	elif tower_name == "inferno":
 		var data = preload("res://components/Towers/inferno.tscn")
 		tower = data.instantiate()
+	elif tower_name == "mortar":
+		var data = preload("res://components/Towers/mortar.tscn")
+		tower = data.instantiate()
 	else:
 		var data = preload("res://components/Towers/tower.tscn")
 		tower = data.instantiate()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=56 format=4 uid="uid://7lnwpdy2c177"]
+[gd_scene load_steps=58 format=4 uid="uid://7lnwpdy2c177"]
 
 [ext_resource type="Script" path="res://components/Towers/tesla.gd" id="1_bpl3u"]
 [ext_resource type="PackedScene" uid="uid://7dq0do5v1hsj" path="res://components/vfx/lighting.tscn" id="2_ssf8k"]
+[ext_resource type="AudioStream" uid="uid://bsuye5vkr3d3o" path="res://assets/audio/Electric SHOCK.mp3" id="2_ulurv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2whor"]
 
@@ -473,6 +474,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8j8ux")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6vis"]
+albedo_color = Color(0.76261, 0.908396, 0.983781, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkba7"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gs8ji"]
@@ -657,6 +664,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1up62")
 transform = Transform3D(0.832289, -0.000938004, -0.00228499, 0.000931657, 0.832289, -0.0023067, 0.00228759, 0.00230412, 0.832287, 0.000323217, 7.44774, -0.000243533)
 mesh = SubResource("ArrayMesh_86ta0")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_c6vis")
+
+[node name="hit" type="AudioStreamPlayer3D" parent="tower/Sphere"]
+stream = ExtResource("2_ulurv")
+volume_db = -14.955
 
 [node name="circles" type="Node3D" parent="tower"]
 
@@ -669,11 +681,13 @@ skeleton = NodePath("")
 transform = Transform3D(-0.96572, -0.534302, 0.115315, -0.188901, 0.106551, -1.08828, 0.512926, -0.966726, -0.183682, -0.000107739, 7.28879, 8.11778e-05)
 mesh = SubResource("ArrayMesh_2xxan")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_c6vis")
 
 [node name="BézierCircle_003" type="MeshInstance3D" parent="tower/circles"]
 transform = Transform3D(-0.324591, -0.620819, 0.906733, 0.985854, -0.582188, -0.0456962, 0.485461, 0.76719, 0.699062, -0.000107739, 7.28879, 8.11778e-05)
 mesh = SubResource("ArrayMesh_2ubgw")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_c6vis")
 
 [node name="towerstatic" type="StaticBody3D" parent="."]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0.476429, 0)

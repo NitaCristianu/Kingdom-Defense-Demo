@@ -19,13 +19,14 @@ fill_to = Vector2(0.474359, 0)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6tims"]
 texture = SubResource("GradientTexture2D_6fnq5")
 
-[sub_resource type="LabelSettings" id="LabelSettings_nacqm"]
-font = ExtResource("1_6pk0i")
-font_size = 41
-
 [sub_resource type="LabelSettings" id="LabelSettings_wr1nc"]
 font = ExtResource("1_6pk0i")
 font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_nacqm"]
+font = ExtResource("1_6pk0i")
+font_size = 41
+font_color = Color(0.391321, 0.686693, 0.873903, 1)
 
 [node name="inventory" type="Control"]
 layout_mode = 3
@@ -43,26 +44,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6tims")
-
-[node name="Title" type="Label" parent="."]
-z_index = 4
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.254
-anchor_top = 0.037
-anchor_right = 0.746
-anchor_bottom = 0.145
-offset_left = 0.391998
-offset_top = 0.0240002
-offset_right = -0.392212
-offset_bottom = 0.0399933
-grow_horizontal = 2
-grow_vertical = 2
-text = "3 Skill Points"
-label_settings = SubResource("LabelSettings_nacqm")
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("2_fi4nv")
 
 [node name="desc" type="Label" parent="."]
 unique_name_in_owner = true
@@ -105,8 +86,8 @@ offset_right = 7.55988
 offset_bottom = 8.13998
 grow_horizontal = 2
 grow_vertical = 2
-cost = 0
 description = "origin"
+cost = 0
 
 [node name="skillPoint8" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
 layout_mode = 1
@@ -121,10 +102,10 @@ offset_bottom = 0.136017
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-previous = NodePath("../origin")
 description = "3 starter mana"
 upgData = 3.0
 category = 4
+previous = NodePath("../origin")
 metadata/_edit_use_anchors_ = true
 
 [node name="skillPoint9" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
@@ -140,31 +121,11 @@ offset_bottom = 0.136017
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-cost = 4
-previous = NodePath("../skillPoint8")
 description = "5 starter mana"
+cost = 4
 upgData = 5.0
 category = 4
-metadata/_edit_use_anchors_ = true
-
-[node name="skillPoint13" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
-layout_mode = 1
-anchor_left = 0.6575
-anchor_top = 0.229722
-anchor_right = 0.723625
-anchor_bottom = 0.352074
-offset_left = -0.440063
-offset_top = 0.139984
-offset_right = 0.503784
-offset_bottom = 0.136017
-grow_horizontal = 2
-grow_vertical = 2
-unlocked = false
-cost = 4
-previous = NodePath("../skillPoint10")
-description = "unlock energifier"
-upgData = 1.0
-category = 2
+previous = NodePath("../skillPoint8")
 metadata/_edit_use_anchors_ = true
 
 [node name="skillPoint10" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
@@ -180,11 +141,11 @@ offset_bottom = 0.136017
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-cost = 8
-previous = NodePath("../skillPoint9")
 description = "10 starter mana"
+cost = 8
 upgData = 10.0
 category = 4
+previous = NodePath("../skillPoint9")
 metadata/_edit_use_anchors_ = true
 
 [node name="skillPoint11" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
@@ -200,11 +161,11 @@ offset_bottom = 0.136017
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-cost = 5
-previous = NodePath("../skillPoint10")
 description = "+15 starter mana"
+cost = 5
 upgData = 15.0
 category = 4
+previous = NodePath("../skillPoint10")
 metadata/_edit_use_anchors_ = true
 
 [node name="skillPoint12" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
@@ -220,11 +181,11 @@ offset_bottom = 0.136017
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-cost = 10
-previous = NodePath("../skillPoint11")
 description = "+25 starter mana"
+cost = 10
 upgData = 25.0
 category = 4
+previous = NodePath("../skillPoint11")
 metadata/_edit_use_anchors_ = true
 
 [node name="skillPoint2" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
@@ -240,8 +201,8 @@ offset_bottom = 7.93594
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-previous = NodePath("../origin")
 description = "+ 10% tower strength"
+previous = NodePath("../origin")
 
 [node name="skillPoint14" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
 layout_mode = 1
@@ -256,11 +217,11 @@ offset_bottom = 0.0319214
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-cost = 3
-previous = NodePath("../origin")
 description = "+15% tower speed"
+cost = 3
 upgData = 0.15
 category = 5
+previous = NodePath("../origin")
 
 [node name="skillPoint15" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
 layout_mode = 1
@@ -275,11 +236,11 @@ offset_bottom = 0.0319214
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-cost = 5
-previous = NodePath("../skillPoint14")
 description = "Tesla"
+cost = 5
 upgData = 1.0
 category = 0
+previous = NodePath("../skillPoint14")
 metadata/_edit_use_anchors_ = true
 
 [node name="skillPoint3" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
@@ -295,9 +256,9 @@ offset_bottom = -0.127991
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-previous = NodePath("../skillPoint2")
 description = "+ 20% tower strength"
 upgData = 0.2
+previous = NodePath("../skillPoint2")
 
 [node name="skillPoint4" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
 layout_mode = 1
@@ -312,10 +273,10 @@ offset_bottom = 0.136017
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-cost = 2
-previous = NodePath("../skillPoint3")
 description = "+ 30% tower strength"
+cost = 2
 upgData = 0.3
+previous = NodePath("../skillPoint3")
 
 [node name="inferno" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
 layout_mode = 1
@@ -330,11 +291,11 @@ offset_bottom = -0.0639801
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-cost = 5
-previous = NodePath("../skillPoint4")
 description = "unlock inferno tower"
+cost = 5
 upgData = 1.0
 category = 1
+previous = NodePath("../skillPoint4")
 
 [node name="skillPoint5" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
 layout_mode = 1
@@ -349,10 +310,10 @@ offset_bottom = 0.0320129
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-cost = 2
-previous = NodePath("../skillPoint4")
 description = "+ 80% tower strength"
+cost = 2
 upgData = 0.8
+previous = NodePath("../skillPoint4")
 
 [node name="skillPoint6" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
 layout_mode = 1
@@ -367,10 +328,10 @@ offset_bottom = 0.200012
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-cost = 3
-previous = NodePath("../skillPoint5")
 description = "+ 130% tower strength"
+cost = 3
 upgData = 1.3
+previous = NodePath("../skillPoint5")
 
 [node name="skillPoint7" parent="SkillPoints" node_paths=PackedStringArray("previous") instance=ExtResource("5_je8pi")]
 layout_mode = 1
@@ -385,9 +346,9 @@ offset_bottom = -0.152008
 grow_horizontal = 2
 grow_vertical = 2
 unlocked = false
-previous = NodePath("../skillPoint6")
 description = "+200% strength size"
 upgData = 2.0
+previous = NodePath("../skillPoint6")
 
 [node name="Button" parent="." instance=ExtResource("2_1dkb4")]
 layout_mode = 1
@@ -398,5 +359,45 @@ offset_right = 51.84
 offset_bottom = -0.832031
 grow_vertical = 1
 script = ExtResource("3_gforf")
+
+[node name="Title" type="Label" parent="."]
+z_index = 4
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.254
+anchor_top = 0.037
+anchor_right = 0.746
+anchor_bottom = 0.145
+offset_left = 0.391998
+offset_top = 0.0240021
+offset_right = 127.094
+offset_bottom = 40.6567
+grow_horizontal = 2
+grow_vertical = 2
+text = "3 Skill Points"
+label_settings = SubResource("LabelSettings_nacqm")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_fi4nv")
+
+[node name="Title2" type="Label" parent="."]
+z_index = 4
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.254
+anchor_top = 0.767
+anchor_right = 0.812
+anchor_bottom = 1.0
+offset_left = 0.319977
+offset_top = -0.360046
+offset_right = -0.0400391
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Use the skill points obtained  from defeteating bosses here,
+you may unlock towers or develop skills"
+label_settings = SubResource("LabelSettings_nacqm")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="mouse_entered" from="SkillPoints" to="SkillPoints" method="_on_mouse_entered"]

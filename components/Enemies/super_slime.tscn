@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwty0gc2m6tia"]
+
+[ext_resource type="Script" path="res://components/Enemies/super_slime.gd" id="1_4qxdw"]
+[ext_resource type="ArrayMesh" uid="uid://b8k82ot7wg005" path="res://assets/enemies/gold slimes/slime.obj" id="2_4gfkl"]
+[ext_resource type="Shader" path="res://components/Enemies/golden_slime.gdshader" id="3_cfm1t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pstxo"]
+render_priority = 0
+shader = ExtResource("3_cfm1t")
+shader_parameter/slime_color = Color(0.43964, 0, 0.0688847, 1)
+shader_parameter/metallic = 0.8
+shader_parameter/roughness = 0.4
+shader_parameter/transparency = 0.8
+shader_parameter/refraction = 0.1
+shader_parameter/wobble_intensity = 0.05
+shader_parameter/wobble_speed = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4thji"]
+size = Vector3(1.85728, 2.02081, 1.90973)
+
+[node name="SuperSlime" type="Node3D"]
+script = ExtResource("1_4qxdw")
+
+[node name="Slime" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.89244e-08, 0, 0.432939, 0, 0.432939, 0, -0.432939, 0, -1.89244e-08, 0, -0.35761, 0)
+mesh = ExtResource("2_4gfkl")
+surface_material_override/0 = SubResource("ShaderMaterial_pstxo")
+
+[node name="Slime" type="MeshInstance3D" parent="Slime"]
+transform = Transform3D(0.95599, 0, 0, 0, 0.95599, 0, 0, 0, 0.95599, 0, 0, 0)
+mesh = ExtResource("2_4gfkl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["enemy_hitbox"]]
+transform = Transform3D(0.721234, 0, 0, 0, 0.721234, 0, 0, 0, 0.721234, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.999998, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, -0.155433, 0.27658, -0.0533748)
+shape = SubResource("BoxShape3D_4thji")

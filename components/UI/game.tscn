@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://di5judnqcm4yb"]
+
+[ext_resource type="FontFile" uid="uid://dbuptrhrkwysm" path="res://assets/font/MedievalSharp-Regular.ttf" id="1_q4kpp"]
+[ext_resource type="PackedScene" uid="uid://0p8fq1w0ggrt" path="res://components/UI/back.tscn" id="2_bp3pe"]
+[ext_resource type="Script" path="res://components/UI/back.gd" id="3_pfumr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwlrn"]
+bg_color = Color(0.0142752, 0.0142752, 0.0142752, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4jmk3"]
+font = ExtResource("1_q4kpp")
+font_size = 91
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bwlrn")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.348
+anchor_top = 0.032
+anchor_right = 0.663
+anchor_bottom = 0.146
+offset_left = -0.160034
+offset_top = 0.439999
+offset_right = 0.039917
+offset_bottom = 0.319992
+text = "Lore"
+label_settings = SubResource("LabelSettings_4jmk3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" parent="." instance=ExtResource("2_bp3pe")]
+layout_mode = 1
+anchor_top = 0.9
+anchor_right = 0.094
+offset_top = -44.064
+offset_right = 51.84
+offset_bottom = -0.832031
+grow_vertical = 1
+script = ExtResource("3_pfumr")
+
+[node name="data" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.152
+anchor_top = 0.186
+anchor_right = 0.86
+anchor_bottom = 0.824
+offset_left = 0.159973
+offset_top = 0.119995
+offset_right = 0.799927
+offset_bottom = 0.0799561
+theme_override_fonts/normal_font = ExtResource("1_q4kpp")
+theme_override_font_sizes/normal_font_size = 35
+text = "In a distant future, the Republic of Gamers, a utopia built by the greatest players, has fallen to monstrous invaders from corrupted games. You are the last surviving legend, wielding the sacred ROG Mana Crystal, a relic of unmatched power. To rewrite fate, you’ve traveled back to a medieval realm where the world generates anew with each wave. As the Overseer, you must command towers, gather resources, and harness the crystal’s energy to defend against waves of corrupted enemies and rebuild the Republic of Gamers from the ashes.
+
+
+
+The game uses free assets as well as AI generated images, see more info the description."

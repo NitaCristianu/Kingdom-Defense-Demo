@@ -7,6 +7,7 @@ enum SEARCH_MODE {NEAREST}
 @onready var mesh: MeshInstance3D = $crossbowmesh
 @onready var support: MeshInstance3D = $support
 @onready var fireball: Node3D = $fireball
+@onready var firehit: AudioStreamPlayer3D = $fireball2/firehit
 
 var initied := false
 var waitTime = 0
@@ -93,6 +94,10 @@ func processShoot():
 			shoot(group[0], true)
 	else:
 		shoot(searchEnemy(), true)
+	if not foundEnemy:
+		fireball.disableTrail()
+	else:
+		firehit.play()
 	waitTime -= speed
 
 func shoot(enemy: Enemy, willDamage : bool = false, FireCurse : int = 0, StunCurse : bool = false):

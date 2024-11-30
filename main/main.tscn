@@ -1,13 +1,101 @@
-[gd_scene load_steps=14 format=3 uid="uid://bt2u7f1wjnwun"]
+[gd_scene load_steps=21 format=3 uid="uid://bt2u7f1wjnwun"]
 
+[ext_resource type="PackedScene" uid="uid://h6lh1b5jwy16" path="res://components/UI/game_ui.tscn" id="1_1uoou"]
+[ext_resource type="Shader" path="res://main/stylizedsky.gdshader" id="1_feg34"]
 [ext_resource type="Script" path="res://config/configuration.gd" id="1_qbu6f"]
 [ext_resource type="Script" path="res://components/Player/player.gd" id="2_dnedb"]
 [ext_resource type="Script" path="res://components/Systems/wave.gd" id="2_fog7m"]
 [ext_resource type="Script" path="res://components/Player/camera.gd" id="3_xknit"]
 [ext_resource type="Script" path="res://components/World/chunk_container.gd" id="4_8b5dl"]
+[ext_resource type="AudioStream" uid="uid://y7tkb2ve0lv2" path="res://assets/audio/new wave.wav" id="5_47sdm"]
 [ext_resource type="Script" path="res://components/World/path/path_generator.gd" id="5_a4jty"]
-[ext_resource type="PackedScene" uid="uid://bqkygim6mafhs" path="res://components/UI/ingame.tscn" id="6_fq5fn"]
-[ext_resource type="PackedScene" uid="uid://dlmk0fda3hkb5" path="res://components/UI/ingame_ui_final.tscn" id="8_i4jun"]
+[ext_resource type="AudioStream" uid="uid://84csi4ujyh2p" path="res://assets/audio/medieval music.mp3" id="9_0w74n"]
+[ext_resource type="Script" path="res://main/bgrmus.gd" id="11_2vrmw"]
+[ext_resource type="Script" path="res://main/bgrmusic.gd" id="11_nis42"]
+[ext_resource type="AudioStream" uid="uid://7ne4k7eral5s" path="res://assets/audio/intense music.mp3" id="12_oxvmg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_orqft"]
+shader = ExtResource("1_feg34")
+shader_parameter/day_top_color = Color(0.855177, 0.425389, 0.562659, 1)
+shader_parameter/day_bottom_color = Color(0.979153, 0.645566, 0.638879, 1)
+shader_parameter/sunset_top_color = Color(0.955182, 0.668415, 0.796717, 1)
+shader_parameter/sunset_bottom_color = Color(0.96635, 0.562368, 0.498634, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0.673268, 0.565952, 0.819039, 1)
+shader_parameter/horizon_blur = 0.46
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(0.998937, 0.772658, 0.735313, 1)
+shader_parameter/sun_size = 0.22
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 8.2
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.57
+shader_parameter/clouds_cutoff = 0.21
+shader_parameter/clouds_fuzziness = 0.4
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.6
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_srpom"]
+sky_material = SubResource("ShaderMaterial_orqft")
+
+[sub_resource type="Environment" id="Environment_gar8i"]
+background_mode = 2
+sky = SubResource("Sky_srpom")
+ambient_light_source = 2
+ambient_light_color = Color(0.71502, 0.607757, 0.567181, 1)
+tonemap_mode = 3
+tonemap_exposure = 0.35
+tonemap_white = 0.44
+ssr_fade_out = 15.455
+ssr_depth_tolerance = 0.01
+ssao_radius = 1.77
+ssao_intensity = 0.28
+ssao_power = 46.365
+ssao_detail = 3.54
+ssao_horizon = 0.0
+ssil_radius = 2.04
+ssil_intensity = 2.12
+ssil_sharpness = 1.0
+sdfgi_bounce_feedback = 1.99
+sdfgi_cascades = 8
+sdfgi_min_cell_size = 64.0002
+sdfgi_cascade0_distance = 4096.02
+sdfgi_max_distance = 1.04858e+06
+sdfgi_y_scale = 2
+glow_enabled = true
+glow_intensity = 2.22
+glow_strength = 1.22
+glow_bloom = 0.15
+glow_blend_mode = 0
+glow_hdr_threshold = 2.92
+glow_hdr_scale = 2.63
+glow_hdr_luminance_cap = 38.22
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.951891, 0.389169, 0.596891, 1)
+fog_light_energy = 0.35
+fog_sun_scatter = 1.0
+fog_density = 1.0
+fog_height_density = 0.4486
+fog_depth_curve = 2.0
+fog_depth_begin = 0.0
+fog_depth_end = 1692.2
+volumetric_fog_density = 0.005
+volumetric_fog_gi_inject = 8.0
+volumetric_fog_length = 94.0
+volumetric_fog_ambient_inject = 0.01
+adjustment_enabled = true
+adjustment_brightness = 0.8
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jpa06"]
 noise_type = 3
@@ -35,27 +123,29 @@ albedo_color = Color(0.705999, 0.976621, 0.713342, 1)
 material = SubResource("StandardMaterial3D_liuax")
 size = Vector3(2.1, 2.1, 2.1)
 
-[sub_resource type="Environment" id="Environment_j2bwr"]
-background_mode = 1
-background_color = Color(0.349494, 0.706755, 0.956848, 1)
-ambient_light_source = 3
-ambient_light_color = Color(0.921206, 0.894954, 0.867788, 1)
-ambient_light_sky_contribution = 0.08
-ambient_light_energy = 1.43
-ssr_enabled = true
-ssao_enabled = true
-glow_enabled = true
-volumetric_fog_enabled = true
-
 [node name="main" type="Node3D"]
 
 [node name="Configuration" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_qbu6f")
 
+[node name="gameUI" parent="." instance=ExtResource("1_1uoou")]
+unique_name_in_owner = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gar8i")
+
 [node name="Wave" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_fog7m")
+
+[node name="newWave" type="AudioStreamPlayer3D" parent="Wave"]
+stream = ExtResource("5_47sdm")
+volume_db = -25.043
 
 [node name="Player" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -66,7 +156,6 @@ script = ExtResource("2_dnedb")
 unique_name_in_owner = true
 transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 0, 0)
 v_offset = 13.0
-projection = 1
 current = true
 fov = 71.0
 size = 30.0
@@ -103,13 +192,6 @@ unique_name_in_owner = true
 [node name="Structs" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="ingame" parent="." instance=ExtResource("6_fq5fn")]
-unique_name_in_owner = true
-visible = false
-
-[node name="ingame_ui" parent="." instance=ExtResource("8_i4jun")]
-unique_name_in_owner = true
-
 [node name="BuildingMark" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -129,19 +211,27 @@ spot_angle_attenuation = 0.732043
 [node name="Towers" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_j2bwr")
-
 [node name="VFXContainer" type="Node" parent="."]
 
-[connection signal="base_damaged" from="Wave" to="ingame_ui" method="_on_wave_base_damaged"]
+[node name="bgrmusic" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_0w74n")
+volume_db = -27.826
+autoplay = true
+parameters/looping = true
+script = ExtResource("11_2vrmw")
+
+[node name="fightmusic" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("12_oxvmg")
+volume_db = -27.826
+autoplay = true
+parameters/looping = true
+script = ExtResource("11_nis42")
+
 [connection signal="wave_end" from="Wave" to="Wave" method="_on_wave_end"]
-[connection signal="wave_start" from="Wave" to="ingame_ui" method="_on_wave_wave_start"]
 [connection signal="currency_changed" from="Player" to="Player" method="_on_currency_changed"]
 [connection signal="state_changed" from="Player" to="Player" method="_on_state_changed"]
+[connection signal="child_entered_tree" from="Enemies" to="bgrmusic" method="_on_enemies_child_entered_tree"]
+[connection signal="child_entered_tree" from="Enemies" to="fightmusic" method="_on_enemies_child_entered_tree"]
 [connection signal="child_exiting_tree" from="Enemies" to="Wave" method="_on_enemies_child_exiting_tree"]
-[connection signal="child_exiting_tree" from="Enemies" to="ingame_ui" method="_on_enemies_child_exiting_tree"]
-[connection signal="enterbuildmode" from="ingame" to="Player" method="_on_ingame_enterbuildmode"]
-[connection signal="mouse_entered" from="ingame" to="Player" method="_on_ingame_mouse_entered"]
-[connection signal="mouse_exited" from="ingame" to="Player" method="_on_ingame_mouse_exited"]
-[connection signal="enterbuildmode" from="ingame_ui" to="Player" method="_on_ingame_ui_enterbuildmode"]
+[connection signal="child_exiting_tree" from="Enemies" to="bgrmusic" method="_on_enemies_child_exiting_tree"]
+[connection signal="child_exiting_tree" from="Enemies" to="fightmusic" method="_on_enemies_child_exiting_tree"]

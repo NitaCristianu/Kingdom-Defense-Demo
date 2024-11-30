@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://co3wscctlvdt7"]
+[gd_scene load_steps=10 format=3 uid="uid://co3wscctlvdt7"]
 
 [ext_resource type="Texture2D" uid="uid://btarmtw2e3olw" path="res://assets/ui/book.png" id="1_yvwxj"]
 [ext_resource type="Script" path="res://components/UI/bookofupgrades.gd" id="2_cqc0k"]
 [ext_resource type="FontFile" uid="uid://b0f3lx6x2ei1i" path="res://assets/font/BLKCHCRY.TTF" id="3_c84ky"]
-[ext_resource type="PackedScene" path="res://components/UI/animator.tscn" id="4_v828s"]
+[ext_resource type="PackedScene" uid="uid://c5484isel7t1j" path="res://components/UI/animator.tscn" id="4_v828s"]
 [ext_resource type="FontFile" uid="uid://dbuptrhrkwysm" path="res://assets/font/MedievalSharp-Regular.ttf" id="5_f0g3q"]
+[ext_resource type="AudioStream" uid="uid://btvibs77eiuho" path="res://assets/audio/pageflip.mp3" id="6_h3n8t"]
+[ext_resource type="AudioStream" uid="uid://pll4bdgwhqgy" path="res://assets/audio/upgrade.wav" id="7_7lix2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uvhl1"]
 texture = ExtResource("1_yvwxj")
@@ -110,14 +112,14 @@ flat = true
 [node name="tower_icon" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.142
-anchor_top = 0.198
-anchor_right = 0.358
-anchor_bottom = 0.488
-offset_left = 0.145275
-offset_top = -0.00549698
-offset_right = -3.25471
-offset_bottom = 3.3745
+anchor_left = 0.159
+anchor_top = 0.199
+anchor_right = 0.344
+anchor_bottom = 0.441
+offset_left = 0.0271454
+offset_top = -0.11631
+offset_right = -4.2746
+offset_bottom = 4.86285
 rotation = -0.0399052
 theme_override_styles/panel = SubResource("StyleBoxTexture_3iy4k")
 
@@ -177,7 +179,27 @@ offset_left = -0.124207
 offset_top = -0.136351
 offset_right = -0.124176
 offset_bottom = 0.00564957
+rotation = 0.0593412
 text = "X"
+flat = true
+
+[node name="sell" type="Button" parent="."]
+modulate = Color(0.0110876, 0.0110876, 0.0110876, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.536
+anchor_top = 0.065
+anchor_right = 0.66
+anchor_bottom = 0.128
+offset_left = 2.23813
+offset_top = -4.95663
+offset_right = 104.593
+offset_bottom = 44.8809
+rotation = 0.0593412
+scale = Vector2(0.435, 0.435)
+theme_override_fonts/font = ExtResource("5_f0g3q")
+theme_override_font_sizes/font_size = 56
+text = "SELL $"
 flat = true
 
 [node name="Price" type="RichTextLabel" parent="."]
@@ -222,4 +244,12 @@ text = "Changes:
 6 damage
 3 speed"
 
+[node name="pageflip" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_h3n8t")
+volume_db = -12.205
+
+[node name="upgradesound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_7lix2")
+
 [connection signal="pressed" from="close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="sell" to="." method="_on_sell_pressed"]

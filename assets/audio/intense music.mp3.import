@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7ne4k7eral5s"
+path="res://.godot/imported/intense music.mp3-ff02e0ba9798c89c8e8d951b95bb9307.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/intense music.mp3"
+dest_files=["res://.godot/imported/intense music.mp3-ff02e0ba9798c89c8e8d951b95bb9307.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -5,7 +5,6 @@ extends Node3D
 
 func trailLookTo(lookAt: Vector3):
 	look_at(lookAt)
-	trail_ab.scale
 
 func enableTrail():
 	trail_ab.show()

@@ -14,6 +14,8 @@ var icons = {
 @export var tower_type : TOWER
 @onready var icon: Panel = $icon
 @onready var animator: AnimationComponent = $Animator
+@onready var resources: VBoxContainer = $resources
+@onready var resource_anim: AnimationComponent = $resources/AnimationComponent
 
 func config(tower_name : TOWER) -> void:
 	tower_type = tower_name
@@ -26,14 +28,32 @@ func config_safe() -> void:
 	icon.pivot_offset = icon.size / 2
 	icon.scale *= .8
 
+func displayStats() -> void:
+	if not (tower_type is TOWER): return
+	
+	var data = Configuration.getData_absolute()["Entity"]["Tower"][(TOWER.find_key(tower_type) as String).to_lower()]["Price"]
+	
+	for child in resources.get_children():
+		if child is AnimationComponent: continue
+		var val: int = data[child.name]
+		if val == 0: child.hide()
+		else: child.show()
+		var label = child.get_child(1)
+		label.text = str(val)
+	
+	resource_anim.add_tween("modulate:a", 1, 0.4)
+	resource_anim.add_tween("scale", Vector2.ONE * .74, .4)
+
+func hideStats() -> void:
+	resource_anim.add_tween("modulate:a", 0, 0.4)
+	resource_anim.add_tween("scale", Vector2.ONE * .3, .4)
+
 func unfocus():
-	var ingame: Control = get_node("/root/main/ingame_ui").get_child(0)
-	animator.add_tween("position:y", 30, .5)
+	animator.add_tween("position:y", 230, .5)
 	animator.add_tween("scale", Vector2.ONE, .5)
 	animator.add_tween("modulate", Color(.8,.8,.8, .5), .5)
 
 func focus():
-	var ingame: Control = get_node("/root/main/ingame_ui").get_child(0)
 	animator.add_tween("position:y", -30, .5)
 	animator.add_tween("scale", Vector2.ONE * 1.2, .5)
 	animator.add_tween("modulate", Color(1, 1, 1), .5)
@@ -50,3 +70,9 @@ func appear() -> void:
 	show()
 	animator.add_tween("scale", Vector2.ONE, .4)
 	animator.default_scale = Vector2.ONE
+
+func _on_mouse_entered() -> void:
+	displayStats()
+
+func _on_mouse_exited() -> void:
+	hideStats()

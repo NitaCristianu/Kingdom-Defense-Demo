@@ -64,6 +64,7 @@ func uninspect(tower : Tower):
 	book.close(tower)
 
 func _on_tower_collection_selected(selected: String) -> void:
+	print("found in ingame2")
 	enterbuildmode.emit(selected)
 
 func _on_wave_wave_start(waveNum: int) -> void:

@@ -28,12 +28,12 @@ func _input(event: InputEvent) -> void:
 			self.rotate(Vector3(0, 1, 0), event.relative.x * -0.004)
 		
 	if Input.is_action_pressed("ZoomIn"):
-		if camera.size < 50:
-			camera.size += 0.5
+		if camera.fov < 120:
+			camera.fov += 2
 			
 	if Input.is_action_pressed("ZoomOut"):
-		if camera.size > 6:
-			camera.size -= .5
+		if camera.fov > 30:
+			camera.fov -= 2
 
 func _process(delta: float) -> void:
 	

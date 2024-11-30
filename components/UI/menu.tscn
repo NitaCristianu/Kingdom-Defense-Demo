@@ -1,27 +1,29 @@
-[gd_scene load_steps=20 format=3 uid="uid://bpuxjs1v2uwrj"]
+[gd_scene load_steps=19 format=3 uid="uid://bpuxjs1v2uwrj"]
 
 [ext_resource type="FontFile" uid="uid://b0f3lx6x2ei1i" path="res://assets/font/BLKCHCRY.TTF" id="1_cgq3e"]
 [ext_resource type="Script" path="res://components/UI/menu.gd" id="1_xi5po"]
 [ext_resource type="PackedScene" uid="uid://ddaw8y2p33hnc" path="res://components/UI/button.tscn" id="2_tnl6g"]
-[ext_resource type="StyleBox" uid="uid://cuw3kur5vcdds" path="res://resources/new_style_box_flat.tres" id="3_ipn0a"]
-[ext_resource type="Texture2D" uid="uid://cqwtxc45vuuqd" path="res://assets/Icons/300ppp/UI NUEVA-86.png" id="4_5vh78"]
-[ext_resource type="Texture2D" uid="uid://cl4dbwefw5amu" path="res://assets/Icons/300ppp/UI NUEVA-96.png" id="5_6015r"]
-[ext_resource type="Texture2D" uid="uid://duolvmgwib2qp" path="res://assets/Icons/72ppp/UI NUEVA-95.png" id="6_lr6tu"]
+[ext_resource type="Texture2D" uid="uid://bh5j8l7movfrr" path="res://assets/buttons/dictionary.png" id="4_pjox3"]
+[ext_resource type="Script" path="res://components/UI/node.gd" id="5_icasw"]
+[ext_resource type="Texture2D" uid="uid://cu3d5jxp4lw5f" path="res://assets/buttons/campaignmode.png" id="6_yrl8s"]
+[ext_resource type="Texture2D" uid="uid://ds4ye56xp7wm1" path="res://assets/buttons/inventorymode.png" id="7_5m1q6"]
+[ext_resource type="Texture2D" uid="uid://cqp71qe4c066i" path="res://assets/ROG-logo-white.png" id="8_hm5rg"]
 
 [sub_resource type="Gradient" id="Gradient_q60v0"]
 interpolation_mode = 2
-colors = PackedColorArray(0.320893, 0.40177, 0.521849, 1, 0.111209, 0.131887, 0.121049, 1)
+colors = PackedColorArray(0.0244433, 0.0120078, 0.00268291, 1, 0.0309769, 0.0092923, 0.0042999, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_08wey"]
 gradient = SubResource("Gradient_q60v0")
-fill_from = Vector2(0.0598291, 0)
-fill_to = Vector2(0.662393, 1)
+fill_from = Vector2(0.495726, 0.0299145)
+fill_to = Vector2(0.482906, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_68hjg"]
 texture = SubResource("GradientTexture2D_08wey")
 
 [sub_resource type="LabelSettings" id="LabelSettings_dg8kw"]
-font_size = 19
+font = ExtResource("1_cgq3e")
+font_size = 34
 
 [sub_resource type="LabelSettings" id="LabelSettings_erktc"]
 font = ExtResource("1_cgq3e")
@@ -29,50 +31,16 @@ font_size = 89
 shadow_size = 21
 shadow_color = Color(1, 1, 1, 0.12549)
 
-[sub_resource type="LabelSettings" id="LabelSettings_artnc"]
-font = ExtResource("1_cgq3e")
-font_size = 26
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwlr3"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5sny8"]
-texture = ExtResource("4_5vh78")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ia8vb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaqle"]
-bg_color = Color(0.329613, 0, 0.0635274, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.580744, 0, 0.20168, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 15
-shadow_offset = Vector2(0, 5.8)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a443i"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_4myu3"]
-font = ExtResource("1_cgq3e")
-font_size = 36
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1i6mn"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_if0r1"]
-texture = ExtResource("5_6015r")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_516bi"]
-bg_color = Color(0.0549556, 0.187788, 0.168114, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.13908, 0.354322, 0.264088, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 15
-shadow_offset = Vector2(0, 5.8)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rlp5u"]
-texture = ExtResource("6_lr6tu")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ny1d2"]
+texture = ExtResource("8_hm5rg")
 
 [node name="menu" type="Panel"]
 anchors_preset = 15
@@ -96,12 +64,15 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_68hjg")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.222
-anchor_top = 0.421
+anchor_top = 0.27
 anchor_right = 0.776
-anchor_bottom = 0.5
+anchor_bottom = 0.349
+offset_left = -3.05176e-05
+offset_top = 0.399994
+offset_bottom = 0.399994
 grow_horizontal = 2
 grow_vertical = 2
-text = "GAME MADE FOR ASUS ROG JAM"
+text = "Joc Realizat pentru ROG Challenge 2024"
 label_settings = SubResource("LabelSettings_dg8kw")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -110,15 +81,16 @@ vertical_alignment = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.087
-anchor_top = 0.262
+anchor_top = 0.112963
 anchor_right = 0.913
-anchor_bottom = 0.467
+anchor_bottom = 0.317963
 grow_horizontal = 2
 grow_vertical = 2
 text = "GAMER DEFENSE"
 label_settings = SubResource("LabelSettings_erktc")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="buttons" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -133,142 +105,48 @@ mouse_filter = 2
 theme_override_constants/separation = 95
 alignment = 1
 
-[node name="endless" parent="buttons" instance=ExtResource("2_tnl6g")]
+[node name="dictionary" parent="buttons" instance=ExtResource("2_tnl6g")]
 layout_mode = 2
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_uwlr3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ia8vb")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_a443i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1i6mn")
+icon = ExtResource("4_pjox3")
 
-[node name="Panel2" type="Panel" parent="buttons/endless"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = ExtResource("3_ipn0a")
-
-[node name="name2" type="Label" parent="buttons/endless"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.092
-anchor_top = 0.596
-anchor_right = 0.911
-anchor_bottom = 0.85
-offset_left = 0.067997
-offset_top = -0.0279999
-offset_right = 0.118973
-offset_bottom = -0.0500031
-grow_horizontal = 2
-grow_vertical = 2
-text = "endless mode"
-label_settings = SubResource("LabelSettings_artnc")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="icon2" type="Panel" parent="buttons/endless"]
-modulate = Color(0.180392, 0.25098, 0.654902, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.312
-anchor_top = 0.155
-anchor_right = 0.688
-anchor_bottom = 0.565
-offset_left = -0.0200043
-offset_top = 0.0849991
-offset_right = 3.57999
-offset_bottom = -1.415
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_5sny8")
+[node name="AnimationComponent" type="Node" parent="buttons/dictionary"]
+script = ExtResource("5_icasw")
 
 [node name="campaign" parent="buttons" instance=ExtResource("2_tnl6g")]
 layout_mode = 2
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_uwlr3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ia8vb")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_a443i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1i6mn")
+icon = ExtResource("6_yrl8s")
 
-[node name="Panel" type="Panel" parent="buttons/campaign"]
-custom_minimum_size = Vector2(257.625, 0)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.113
-anchor_right = 1.113
-anchor_bottom = 1.0
-offset_left = 23.73
-offset_right = -23.73
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_yaqle")
-
-[node name="name" type="Label" parent="buttons/campaign"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.092
-anchor_top = 0.596
-anchor_right = 0.911
-anchor_bottom = 0.85
-offset_top = 1.52588e-05
-offset_bottom = 1.52588e-05
-grow_horizontal = 2
-grow_vertical = 2
-text = "campaign mode"
-label_settings = SubResource("LabelSettings_4myu3")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="icon" type="Panel" parent="buttons/campaign"]
-modulate = Color(0.580392, 0, 0.2, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.312
-anchor_top = 0.155
-anchor_right = 0.688
-anchor_bottom = 0.565
-offset_top = 0.0849991
-offset_bottom = -0.0449982
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_if0r1")
+[node name="AnimationComponent" type="Node" parent="buttons/campaign"]
+script = ExtResource("5_icasw")
 
 [node name="inventory" parent="buttons" instance=ExtResource("2_tnl6g")]
 layout_mode = 2
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_uwlr3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ia8vb")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_a443i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1i6mn")
+icon = ExtResource("7_5m1q6")
 
-[node name="Panel" type="Panel" parent="buttons/inventory"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_516bi")
+[node name="AnimationComponent" type="Node" parent="buttons/inventory"]
+script = ExtResource("5_icasw")
 
-[node name="icon" type="Panel" parent="buttons/inventory"]
-modulate = Color(0.137255, 0.352941, 0.262745, 1)
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.312
-anchor_top = 0.155
-anchor_right = 0.688
-anchor_bottom = 0.565
-offset_top = 0.0849991
-offset_bottom = -0.0449982
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_rlp5u")
-
-[node name="name" type="Label" parent="buttons/inventory"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.092
-anchor_top = 0.596
-anchor_right = 0.911
-anchor_bottom = 0.85
-offset_top = 1.52588e-05
-offset_bottom = 1.52588e-05
-grow_horizontal = 2
-grow_vertical = 2
-text = "inventory"
-label_settings = SubResource("LabelSettings_4myu3")
-horizontal_alignment = 1
-vertical_alignment = 1
+anchor_left = 0.663
+anchor_top = 0.273
+anchor_right = 0.706
+anchor_bottom = 0.35
+offset_left = 0.039917
+offset_top = 0.160004
+offset_right = 0.47998
+offset_bottom = -3.05176e-05
+theme_override_styles/panel = SubResource("StyleBoxTexture_ny1d2")

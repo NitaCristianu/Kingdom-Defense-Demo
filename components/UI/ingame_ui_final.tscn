@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dlmk0fda3hkb5"]
+[gd_scene load_steps=22 format=3 uid="uid://shf6bpwom8f6"]
 
 [ext_resource type="Script" path="res://components/UI/h_box_container.gd" id="1_64hqn"]
 [ext_resource type="PackedScene" uid="uid://dhkwes57ltdei" path="res://components/UI/tower_button.tscn" id="1_daocs"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://co3wscctlvdt7" path="res://components/UI/bookofupgrades.tscn" id="3_bwal2"]
 [ext_resource type="FontFile" uid="uid://b0f3lx6x2ei1i" path="res://assets/font/BLKCHCRY.TTF" id="5_qhojm"]
 [ext_resource type="Script" path="res://components/UI/wave_allert.gd" id="6_bwfit"]
-[ext_resource type="PackedScene" path="res://components/UI/animator.tscn" id="7_ck68a"]
+[ext_resource type="PackedScene" uid="uid://c5484isel7t1j" path="res://components/UI/animator.tscn" id="7_ck68a"]
 [ext_resource type="Texture2D" uid="uid://cj8n3tqnm11cc" path="res://assets/healthbar/8.png" id="8_g25eg"]
 [ext_resource type="Script" path="res://components/UI/healthbar.gd" id="9_3f143"]
 [ext_resource type="Texture2D" uid="uid://d01charvj4u4v" path="res://assets/resources/wood.png" id="10_1jovp"]
@@ -38,7 +38,7 @@ texture = ExtResource("13_pyavf")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ijc0"]
 texture = ExtResource("14_n001m")
 
-[node name="ingame" type="Control"]
+[node name="ingame2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

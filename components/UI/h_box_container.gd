@@ -1,6 +1,9 @@
 class_name TowerCollectionContainer extends HBoxContainer
 
 signal selected(selectedTowerName : String)
+@onready var escapekey: Label = $"../escapekey"
+@onready var canceltower: AudioStreamPlayer2D = $"../canceltower"
+@onready var placetower: AudioStreamPlayer2D = $"../placetower"
 
 var towers_unlocked = {
 	'crossbow' : true,
@@ -27,16 +30,16 @@ func get_player_skills() -> Dictionary:
 func process_skills() -> void:
 	var player_skills = get_player_skills()
 	
-	if player_skills.inferno:
+	if player_skills.get("inferno"):
 		towers_unlocked.inferno = true
-	if player_skills.tesla:
+	if player_skills.get("tesla"):
 		towers_unlocked.tesla = true
-	if player_skills.energifier:
-		towers_unlocked.energifier = true
 
 func stop_selection():
 	for button : TowerButton in get_children():
 		button.default()
+	escapekey.hide()
+	canceltower.play()
 
 func select_tower(tower_name: String, button: TowerButton) -> void:
 	button.focus()
@@ -44,7 +47,11 @@ func select_tower(tower_name: String, button: TowerButton) -> void:
 	for child_button: TowerButton in get_children():
 		if button == child_button or child_button == template: continue
 		child_button.unfocus()
-	selected.emit(tower_name)
+	#selected.emit(tower_name)
+	var plr: Player = get_node("/root/main/Player/")
+	plr._on_game_ui_enterbuildmode(tower_name)
+	placetower.play()
+	escapekey.show()
 
 func setup_buttons() -> void:
 	for tower: String in towers_unlocked:
@@ -57,4 +64,3 @@ func setup_buttons() -> void:
 		button.pressed.connect(func(): select_tower(tower, button))
 		
 		button.appear()
-		

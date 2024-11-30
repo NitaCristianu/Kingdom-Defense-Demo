@@ -1,6 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7kw3mkmakyme"]
+[gd_scene load_steps=8 format=3 uid="uid://b7kw3mkmakyme"]
 
 [ext_resource type="Script" path="res://components/World/chunk.gd" id="1_hd77a"]
+[ext_resource type="ArrayMesh" uid="uid://dnagqyxht8c88" path="res://assets/chunks/straight.obj" id="2_6cxse"]
+[ext_resource type="ArrayMesh" uid="uid://d03cl2pd5c5u2" path="res://assets/chunks/turn.obj" id="4_jgu74"]
+[ext_resource type="ArrayMesh" uid="uid://rnkj64ao1jxs" path="res://assets/chunks/base.obj" id="4_l6e7m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvj5r"]
+albedo_color = Color(0.518171, 0.549039, 0.23425, 1)
+metallic = 0.28
+roughness = 0.68
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obmra"]
+albedo_color = Color(0.835054, 0.436952, 0.198367, 1)
+roughness = 0.91
+
+[sub_resource type="BoxMesh" id="BoxMesh_ygo2n"]
 
 [node name="Chunk" type="Node3D"]
 script = ExtResource("1_hd77a")
+
+[node name="Straight" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.000530004, -2.29071e-05, -1, 3.53875e-05, 1, -2.29412e-05, 1, -3.54043e-05, -0.000529999, -6, 0.5, -6)
+mesh = ExtResource("2_6cxse")
+surface_material_override/0 = SubResource("StandardMaterial3D_vvj5r")
+surface_material_override/1 = SubResource("StandardMaterial3D_obmra")
+
+[node name="dirt3" type="MeshInstance3D" parent="Straight"]
+transform = Transform3D(13, -0.0128931, -0.00897462, 0.0103627, 16.171, -0.00315237, 0.00897713, 0.0039124, 13, 0, -8.293, 0)
+material_override = SubResource("StandardMaterial3D_obmra")
+mesh = SubResource("BoxMesh_ygo2n")
+skeleton = NodePath("../../Turn")
+
+[node name="Turn" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00122057, -0.000264424, -0.999999, 0.000832505, 1, -0.000265446, 0.999999, -0.00083283, -0.00122035, -6, 0.5, -6)
+mesh = ExtResource("4_jgu74")
+surface_material_override/0 = SubResource("StandardMaterial3D_vvj5r")
+surface_material_override/1 = SubResource("StandardMaterial3D_obmra")
+
+[node name="dirt5" type="MeshInstance3D" parent="Turn"]
+transform = Transform3D(13, -5.4948e-08, 7.07805e-08, -1.86265e-09, 16.171, -1.21589e-07, 0, 3.0559e-10, 13, -0.00661039, -8.29299, 0.00201082)
+material_override = SubResource("StandardMaterial3D_obmra")
+mesh = SubResource("BoxMesh_ygo2n")
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00122057, -0.000264424, -0.999999, 0.000832505, 1, -0.000265446, 0.999999, -0.00083283, -0.00122035, -6, 0.5, -6)
+mesh = ExtResource("4_l6e7m")
+surface_material_override/0 = SubResource("StandardMaterial3D_vvj5r")
+surface_material_override/1 = SubResource("StandardMaterial3D_obmra")
+
+[node name="dirt4" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(13, -5.4948e-08, 7.07805e-08, -1.86265e-09, 16.171, -1.21589e-07, 0, 3.0559e-10, 13, -0.00661039, -8.29299, 0.00201082)
+material_override = SubResource("StandardMaterial3D_obmra")
+mesh = SubResource("BoxMesh_ygo2n")
+skeleton = NodePath("../../Turn")

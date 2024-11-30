@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://dm37di2jsdyyg"]
+[gd_scene load_steps=21 format=3 uid="uid://dm37di2jsdyyg"]
 
 [ext_resource type="FontFile" uid="uid://b0f3lx6x2ei1i" path="res://assets/font/BLKCHCRY.TTF" id="1_vy6xb"]
 [ext_resource type="Script" path="res://components/UI/container.gd" id="2_8k6w6"]
 [ext_resource type="PackedScene" uid="uid://ddaw8y2p33hnc" path="res://components/UI/button.tscn" id="2_uqwjf"]
 [ext_resource type="Texture2D" uid="uid://hlvqhw73rexr" path="res://assets/levels/easy.png" id="3_pdiqf"]
+[ext_resource type="Script" path="res://components/UI/node.gd" id="5_3sk5f"]
 [ext_resource type="Texture2D" uid="uid://cvocyiis7g3n0" path="res://assets/levels/medium.png" id="5_b5m14"]
 [ext_resource type="Texture2D" uid="uid://cubko7vertgtm" path="res://assets/levels/hard.png" id="6_hwpbg"]
 [ext_resource type="PackedScene" uid="uid://0p8fq1w0ggrt" path="res://components/UI/back.tscn" id="7_l5uxe"]
@@ -126,6 +127,9 @@ size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_bp7pi")
 
+[node name="AnimationComponent3" type="Node" parent="VBoxContainer/container/0"]
+script = ExtResource("5_3sk5f")
+
 [node name="1" parent="VBoxContainer/container" instance=ExtResource("2_uqwjf")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -148,6 +152,9 @@ size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_f3f58")
 
+[node name="AnimationComponent2" type="Node" parent="VBoxContainer/container/1"]
+script = ExtResource("5_3sk5f")
+
 [node name="2" parent="VBoxContainer/container" instance=ExtResource("2_uqwjf")]
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -169,6 +176,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_yamju")
+
+[node name="AnimationComponent" type="Node" parent="VBoxContainer/container/2"]
+script = ExtResource("5_3sk5f")
 
 [node name="Button" parent="." instance=ExtResource("7_l5uxe")]
 layout_mode = 1

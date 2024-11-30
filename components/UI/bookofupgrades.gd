@@ -14,6 +14,8 @@ var open_book = {}
 @onready var close_button: Button = $close
 @onready var price: RichTextLabel = $Price
 @onready var reward: RichTextLabel = $Reward
+@onready var pageflip: AudioStreamPlayer2D = $pageflip
+@onready var upgradesound: AudioStreamPlayer2D = $upgradesound
 
 var page = 1
 var inspecting: Tower
@@ -31,17 +33,31 @@ func handlePages():
 		button.pressed.connect(func() : processUpgrade(button.name.to_int()))
 
 func processUpgrade(upgradeChoice: int):
-	inspecting.levelUp(upgradeChoice-1)
-	#page = 1
-	loadTowerData(inspecting)
+	var data = getUpgradeData(upgradeChoice-1, inspecting.tier)
+	var player = get_node("/root/main/Player/")
+	var canUpgrade = true
+	if data:
+		var wood = data['wood']
+		var stone = data['stone']
+		var gold = data['gold']
+		var mana = data['mana']
+		
+		if not(player.wood >= wood and player.stone >= stone and player.gold >= gold and player.mana >= mana):
+			canUpgrade = false
+		
+	if canUpgrade:
+		upgradesound.play()
+		inspecting.levelUp(upgradeChoice-1)
+		loadTowerData(inspecting, true)
 
 func switchPage(pageNum : int):
 	page = pageNum
-	loadTowerData(inspecting)
+	if inspecting and is_instance_valid(inspecting):
+		loadTowerData(inspecting, true)
 
 func configBookStyle() -> void:
 	open_book = {
-		"position:x" : func() : return get_node("/root/main/ingame_ui").size.x * .6,
+		"position:x" : func() : return get_node("/root/main/gameUI").size.x * .6,
 		"rotation" : rotation,
 		"modulate:a" : 1,
 	}
@@ -100,11 +116,15 @@ func findtowerIcon(isMaxed: bool = false) -> Texture2D:
 	var upgradeName = upgradeData["Upgrade Name"]
 	return load("res://assets/Icons/upgrades/%s/%s.png" % [inspecting.tower_name, upgradeName])
 
-func loadTowerData(tower: Tower):
+func loadTowerData(tower: Tower, newPage: bool = false):
+	if tower == null : return
+	
 	inspecting = tower
 	data = Configuration.getData_absolute()['Entity']['Tower'][inspecting.tower_name]
 	var maxed : bool = tower.tier >= floor(data["Upgrades"].size() / data["Upgrade Choices"])
 	
+	if newPage:
+		pageflip.play()
 	var style := StyleBoxTexture.new() # used for setting texture alter
 	
 	var upgradeData: Dictionary
@@ -115,15 +135,17 @@ func loadTowerData(tower: Tower):
 		upgradeData = getUpgradeData(inspecting.level, inspecting.tier-1)
 		style.texture = findtowerIcon(true)
 		
-	tower_name.text = inspecting.tower_name
+	tower_name.text = inspecting.tower_name.to_upper()
 	description.text = upgradeData["Upgrade Description"]
 	upgrade_name.text = upgradeData["Upgrade Name"]
 	reward.text = getUpgradeDescription(upgradeData)
 	price.text = getUpgradePrice(upgradeData)
 	
 	for btn in pages.get_children():
-		if maxed or data["Upgrade Choices"] < btn.name.to_int(): btn.hide()
-		else: btn.show()
+		if maxed or data["Upgrade Choices"] < btn.name.to_int():
+			btn.hide()
+		else:
+			btn.show()
 		
 	tower_icon.add_theme_stylebox_override("panel", style)
 
@@ -146,10 +168,18 @@ func close(tower:Tower = null) -> Tween:
 	for property in closed_book:
 		var value = closed_book.get(property)
 		tween = animator.add_tween(property, value, .8)
+	var plr:Player = get_node("/root/main/Player/")
+	plr._on_ingame_ui_book_closed()
 	return tween
 	
 func _process(delta: float) -> void:
 	pass
 
 func _on_close_pressed() -> void:
+	close()
+
+
+func _on_sell_pressed() -> void:
+	if inspecting:
+		inspecting.sell()
 	close()

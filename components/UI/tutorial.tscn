@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://difodvq1st54l"]
+
+[ext_resource type="FontFile" uid="uid://dbuptrhrkwysm" path="res://assets/font/MedievalSharp-Regular.ttf" id="1_vxssm"]
+[ext_resource type="PackedScene" uid="uid://0p8fq1w0ggrt" path="res://components/UI/back.tscn" id="2_y8exy"]
+[ext_resource type="Script" path="res://components/UI/back.gd" id="3_xf1u7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5h64j"]
+bg_color = Color(0.0142752, 0.0142752, 0.0142752, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ef7bg"]
+font = ExtResource("1_vxssm")
+font_size = 91
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5h64j")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.348
+anchor_top = 0.032
+anchor_right = 0.663
+anchor_bottom = 0.146
+offset_left = -0.160034
+offset_top = 0.439999
+offset_right = 0.039917
+offset_bottom = 0.319992
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_ef7bg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" parent="." instance=ExtResource("2_y8exy")]
+layout_mode = 1
+anchor_top = 0.9
+anchor_right = 0.094
+offset_top = -44.064
+offset_right = 51.84
+offset_bottom = -0.832031
+grow_vertical = 1
+script = ExtResource("3_xf1u7")
+
+[node name="data" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.152
+anchor_top = 0.186
+anchor_right = 0.86
+anchor_bottom = 0.824
+offset_left = 0.159973
+offset_top = 0.119995
+offset_right = 0.799927
+offset_bottom = 0.0799561
+theme_override_fonts/normal_font = ExtResource("1_vxssm")
+theme_override_font_sizes/normal_font_size = 35
+text = "1. Select the campaign game mode and give the first difficulty a try
+
+2. When defeteaing the final boss, you receive a couple skill points based on the difficulty chosen, use them wisely in the inventory section.
+
+3. In the game you begin by strategically placing workers on the map, they will gather you resources.
+
+4. Using the resources you build near the path a new tower.
+
+5. Start a new wave by extending the map, new enemies will emerge and you must not let them reach the path end. Inspect enemies by clicking on them.
+
+6. Decide when to upgrade your towers, each upgrade has 2 choiches, make sure you select the one that suits your needs.
+
+7. If you survive, you've avenged the Republic of Gamers, good job, use your skill points to gain new abilities for the next levels."

@@ -9,6 +9,7 @@ enum SEARCH_MODE {NEAREST}
 @onready var support_node: Node3D = $support_node
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var lighting: Node3D = $lighting
+@onready var hit: AudioStreamPlayer3D = $tower/Sphere/hit
 
 var bullets = []
 
@@ -93,6 +94,7 @@ func _process(delta: float) -> void:
 		var enemies := searchEnemy()
 		if enemies.size() > 0:
 			timer.start()
+			hit.play()
 			for enemy in enemies: 
 				waitTime = 0
 				shoot(enemy)

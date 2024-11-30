@@ -1,0 +1,173 @@
+[gd_scene load_steps=15 format=3 uid="uid://bx541om8l8bwu"]
+
+[ext_resource type="FontFile" uid="uid://erdgllynwqkw" path="res://examples_dd3d/Roboto-Bold.ttf" id="1_yvc7p"]
+[ext_resource type="FontFile" uid="uid://dbuptrhrkwysm" path="res://assets/font/MedievalSharp-Regular.ttf" id="2_g6mu5"]
+[ext_resource type="Script" path="res://components/UI/tower.gd" id="2_mfqp0"]
+[ext_resource type="PackedScene" uid="uid://0p8fq1w0ggrt" path="res://components/UI/back.tscn" id="3_kwdam"]
+[ext_resource type="Script" path="res://components/UI/tutorial.gd" id="3_nnvkm"]
+[ext_resource type="Script" path="res://components/UI/game.gd" id="4_5fomg"]
+[ext_resource type="Script" path="res://components/UI/back.gd" id="4_d3x5m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mei12"]
+bg_color = Color(0.0142752, 0.0142752, 0.0142752, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m34q3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ibxo7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5huck"]
+bg_color = Color(0.176419, 0.176419, 0.176419, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_33s0i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e12xu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_duyuw"]
+font = ExtResource("2_g6mu5")
+font_size = 91
+
+[node name="Dictionary" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mei12")
+
+[node name="container" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.154
+anchor_top = 0.171
+anchor_right = 0.846
+anchor_bottom = 0.829
+offset_left = -0.180023
+offset_top = -0.180008
+offset_right = 0.179932
+offset_bottom = 0.179932
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="tower" type="Button" parent="container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_yvc7p")
+theme_override_font_sizes/font_size = 51
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_m34q3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ibxo7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5huck")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_33s0i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e12xu")
+text = "TOWERS"
+script = ExtResource("2_mfqp0")
+
+[node name="subtitle" type="Label" parent="container/tower"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.208
+anchor_top = 0.535
+anchor_right = 0.823
+anchor_bottom = 0.613
+offset_left = -0.0279999
+offset_top = 0.11499
+offset_right = 0.131989
+offset_bottom = -0.343018
+text = "Learn about each tower's
+use case"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="tutorial" type="Button" parent="container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_yvc7p")
+theme_override_font_sizes/font_size = 51
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_m34q3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ibxo7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5huck")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_33s0i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e12xu")
+text = "TUTORIAL"
+script = ExtResource("3_nnvkm")
+
+[node name="subtitle" type="Label" parent="container/tutorial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.208
+anchor_top = 0.535
+anchor_right = 0.823
+anchor_bottom = 0.613
+offset_top = 0.11499
+offset_bottom = -0.343018
+text = "Learn how to play the game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="game" type="Button" parent="container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_yvc7p")
+theme_override_font_sizes/font_size = 51
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_m34q3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ibxo7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5huck")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_33s0i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e12xu")
+text = "ABOUT THE
+GAME"
+script = ExtResource("4_5fomg")
+
+[node name="subtitle" type="Label" parent="container/game"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.208
+anchor_top = 0.574
+anchor_right = 0.843
+anchor_bottom = 0.649
+offset_left = 0.264
+offset_top = -0.114014
+offset_right = 0.468964
+offset_bottom = 1.56097
+text = "How I made this game?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.348
+anchor_top = 0.032
+anchor_right = 0.663
+anchor_bottom = 0.146
+offset_left = -0.160034
+offset_top = 0.439999
+offset_right = 0.039917
+offset_bottom = 0.319992
+text = "Dictionary"
+label_settings = SubResource("LabelSettings_duyuw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" parent="." instance=ExtResource("3_kwdam")]
+layout_mode = 1
+anchor_top = 0.9
+anchor_right = 0.094
+offset_top = -44.064
+offset_right = 51.84
+offset_bottom = -0.832031
+grow_vertical = 1
+script = ExtResource("4_d3x5m")
+
+[connection signal="pressed" from="container/tower" to="container/tower" method="_on_pressed"]
+[connection signal="pressed" from="container/tutorial" to="container/tutorial" method="_on_pressed"]
+[connection signal="pressed" from="container/game" to="container/game" method="_on_pressed"]

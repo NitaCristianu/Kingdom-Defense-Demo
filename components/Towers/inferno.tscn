@@ -1,8 +1,9 @@
-[gd_scene load_steps=43 format=4 uid="uid://saqj6il4jksq"]
+[gd_scene load_steps=44 format=4 uid="uid://saqj6il4jksq"]
 
 [ext_resource type="PackedScene" uid="uid://dqgfeq6afxtsk" path="res://components/vfx/fireball.tscn" id="1_6oi2r"]
 [ext_resource type="Script" path="res://components/Towers/inferno.gd" id="1_txuqh"]
 [ext_resource type="PackedScene" uid="uid://ckkbeg34hsne7" path="res://assets/vfx/fireball_2.tscn" id="3_245ta"]
+[ext_resource type="AudioStream" uid="uid://clowhjpbseyd2" path="res://assets/audio/fire.mp3" id="4_3px6q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mbrnb"]
 size = Vector3(1.95605, 2.46393, 1.90015)
@@ -541,10 +542,7 @@ transform = Transform3D(0.808056, 0, 0, 0, 0.808056, 0, 0, 0, 0.808056, 0, 0, 0)
 script = ExtResource("1_txuqh")
 
 [node name="fireball" parent="." instance=ExtResource("1_6oi2r")]
-transform = Transform3D(0.786605, 0, 0, 0, -0.00043935, 0.786605, 0, -0.786605, -0.00043935, 0, 2.03, 0)
-
-[node name="fireball2" parent="fireball" instance=ExtResource("3_245ta")]
-transform = Transform3D(2.00874, 0, 0, 0, -0.00112196, -2.00874, 0, 2.00874, -0.00112196, 0, 2.65671e-06, -0.00475669)
+transform = Transform3D(0.786605, 0, 0, 0, -0.00043935, 0.786605, 0, -0.786605, -0.00043935, 0, 2.75879, 0)
 
 [node name="towerstatic" type="StaticBody3D" parent="."]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0.476429, 0)
@@ -636,3 +634,11 @@ transform = Transform3D(8.15807, -8.15807, 3.43837e-07, 3.43837e-07, 1.37535e-06
 mesh = SubResource("ArrayMesh_1nhmg")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_557xa")
+
+[node name="fireball2" parent="." instance=ExtResource("3_245ta")]
+transform = Transform3D(1.58008, 0, 0, 0, 1.58009, 5.76274e-10, 0, -5.76274e-10, 1.58009, 0, 2.759, 0)
+
+[node name="firehit" type="AudioStreamPlayer3D" parent="fireball2"]
+transform = Transform3D(0.783212, 0, 0, 0, 0.783207, 0, 0, 0, 0.783207, 0, 0, 0)
+stream = ExtResource("4_3px6q")
+volume_db = -9.739

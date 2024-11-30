@@ -1,0 +1,253 @@
+[gd_scene load_steps=26 format=3 uid="uid://h6lh1b5jwy16"]
+
+[ext_resource type="Script" path="res://components/UI/game_ui.gd" id="1_2ihgd"]
+[ext_resource type="Script" path="res://components/UI/h_box_container.gd" id="1_rjaib"]
+[ext_resource type="PackedScene" uid="uid://dhkwes57ltdei" path="res://components/UI/tower_button.tscn" id="2_rbgyv"]
+[ext_resource type="PackedScene" uid="uid://co3wscctlvdt7" path="res://components/UI/bookofupgrades.tscn" id="3_mg4a2"]
+[ext_resource type="FontFile" uid="uid://b0f3lx6x2ei1i" path="res://assets/font/BLKCHCRY.TTF" id="4_pqrs6"]
+[ext_resource type="Script" path="res://components/UI/wave_allert.gd" id="5_rks2i"]
+[ext_resource type="PackedScene" uid="uid://c5484isel7t1j" path="res://components/UI/animator.tscn" id="6_b8k2o"]
+[ext_resource type="Texture2D" uid="uid://cj8n3tqnm11cc" path="res://assets/healthbar/8.png" id="7_ymonv"]
+[ext_resource type="Script" path="res://components/UI/healthbar.gd" id="8_5unff"]
+[ext_resource type="Texture2D" uid="uid://d01charvj4u4v" path="res://assets/resources/wood.png" id="9_rdmr0"]
+[ext_resource type="FontFile" uid="uid://dbuptrhrkwysm" path="res://assets/font/MedievalSharp-Regular.ttf" id="10_7rsev"]
+[ext_resource type="Texture2D" uid="uid://cway0ffn0nuio" path="res://assets/resources/stone.png" id="11_1rtl7"]
+[ext_resource type="Texture2D" uid="uid://yfuamp1h6s4k" path="res://assets/resources/gold.png" id="12_agwng"]
+[ext_resource type="Texture2D" uid="uid://7jfhgmvuwn08" path="res://assets/resources/mana.png" id="13_4s3up"]
+[ext_resource type="PackedScene" uid="uid://dtohoore11eov" path="res://components/UI/enemy_data.tscn" id="15_s3gk2"]
+[ext_resource type="AudioStream" uid="uid://cl1k886cu808s" path="res://assets/audio/placetower.wav" id="16_lwpl0"]
+[ext_resource type="AudioStream" uid="uid://i6mhb5osmt6h" path="res://assets/audio/cancelplacement.wav" id="17_hjlv1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6k2s"]
+font = ExtResource("4_pqrs6")
+font_size = 361
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tcsvc"]
+texture = ExtResource("7_ymonv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2gea4"]
+texture = ExtResource("9_rdmr0")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5n82i"]
+font = ExtResource("10_7rsev")
+font_size = 51
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ixgx"]
+texture = ExtResource("11_1rtl7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rigxh"]
+texture = ExtResource("12_agwng")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mcwpk"]
+texture = ExtResource("13_4s3up")
+
+[sub_resource type="LabelSettings" id="LabelSettings_hsrk6"]
+
+[node name="gameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ihgd")
+
+[node name="towerCollection" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -234.0
+offset_top = -130.0
+offset_right = 234.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 15
+alignment = 1
+script = ExtResource("1_rjaib")
+
+[node name="template" parent="towerCollection" instance=ExtResource("2_rbgyv")]
+visible = false
+layout_mode = 2
+
+[node name="Book" parent="." instance=ExtResource("3_mg4a2")]
+layout_mode = 1
+anchor_left = 0.617
+anchor_top = 0.27121
+anchor_right = 0.96
+anchor_bottom = 0.71121
+offset_left = 0.215942
+offset_top = 0.256027
+offset_right = 5.07996
+offset_bottom = -6.86398
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="WaveAllert" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.417
+anchor_top = 0.004
+anchor_right = 0.582
+anchor_bottom = 0.105
+offset_left = -560.884
+offset_top = -199.592
+offset_right = 562.036
+offset_bottom = 186.96
+grow_horizontal = 2
+scale = Vector2(0.145, 0.145)
+pivot_offset = Vector2(656, 233.128)
+text = "Wave 34"
+label_settings = SubResource("LabelSettings_g6k2s")
+script = ExtResource("5_rks2i")
+
+[node name="Animator" parent="WaveAllert" instance=ExtResource("6_b8k2o")]
+
+[node name="healthbar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.014
+anchor_top = 0.269
+anchor_right = 0.091
+anchor_bottom = 0.702
+offset_left = 0.119999
+offset_top = 0.47998
+offset_right = 0.279984
+offset_bottom = -0.160034
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tcsvc")
+script = ExtResource("8_5unff")
+
+[node name="resource1" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.019
+anchor_top = 0.033
+anchor_right = 0.389
+anchor_bottom = 0.106
+offset_left = -0.480003
+offset_top = 0.360001
+offset_right = -0.880066
+offset_bottom = -0.480003
+size_flags_vertical = 3
+theme_override_constants/separation = 70
+
+[node name="wood" type="HBoxContainer" parent="resource1"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resource1/wood"]
+texture_repeat = 3
+custom_minimum_size = Vector2(70, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_2gea4")
+
+[node name="Label" type="Label" parent="resource1/wood"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_5n82i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="stone" type="HBoxContainer" parent="resource1"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resource1/stone"]
+texture_repeat = 3
+custom_minimum_size = Vector2(70, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7ixgx")
+
+[node name="Label" type="Label" parent="resource1/stone"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_5n82i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="resource2" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1174.0
+offset_top = 36.0
+offset_right = 1884.0
+offset_bottom = 107.0
+size_flags_vertical = 3
+theme_override_constants/separation = 70
+alignment = 2
+
+[node name="gold" type="HBoxContainer" parent="resource2"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resource2/gold"]
+texture_repeat = 3
+custom_minimum_size = Vector2(70, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rigxh")
+
+[node name="Label" type="Label" parent="resource2/gold"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_5n82i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mana" type="HBoxContainer" parent="resource2"]
+layout_mode = 2
+
+[node name="icon" type="Panel" parent="resource2/mana"]
+texture_repeat = 3
+custom_minimum_size = Vector2(70, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_mcwpk")
+
+[node name="Label" type="Label" parent="resource2/mana"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "23"
+label_settings = SubResource("LabelSettings_5n82i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyData" parent="." instance=ExtResource("15_s3gk2")]
+layout_mode = 1
+anchor_left = 0.384
+anchor_top = 0.743
+anchor_right = 0.616
+anchor_bottom = 0.839
+offset_left = 0.719971
+offset_top = -0.440063
+offset_right = 0.279907
+offset_bottom = -0.120056
+grow_vertical = 0
+
+[node name="escapekey" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = 282.5
+offset_right = 122.0
+offset_bottom = 345.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press Escape to cancel."
+label_settings = SubResource("LabelSettings_hsrk6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="placetower" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_lwpl0")
+
+[node name="canceltower" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_hjlv1")

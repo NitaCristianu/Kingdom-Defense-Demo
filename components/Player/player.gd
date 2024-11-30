@@ -2,27 +2,31 @@ extends Node3D
 
 class_name Player
 
-var wood = 1000
-var stone = 100
-var gold = 5000
-var mana = 3000
+var wood = 0
+var stone = 0
+var gold = 0
+var mana = 5
 
 enum STATES {BUILDING, GAME}
 var state: STATES = STATES.GAME
 var state_props = {}
-var chunk_size = -1
+var chunk_size = 12
 var _mouse_on_ui = false
+
+var mouse_on_book = false
 
 signal state_changed
 signal currency_changed(_wood: int, _stone : int, _gold : int, _mana : int)
 
 @onready var camera: PlayerCamera = %Camera
-@onready var ingame: IngameUI = %ingame_ui
 @onready var building_mark: MeshInstance3D = %BuildingMark
 @onready var chunk_container: ChunkContainerClass = %ChunkContainer
 
 var building_marks: Array[MeshInstance3D] = []
 var selectedCells = []
+
+func ingame() -> gameUI:
+	return get_node("/root/main/gameUI")
 
 func incrementCurrency(_wood: int = 0, _stone : int = 0, _gold : int = 0, _mana : int = 0):
 	wood += _wood
@@ -88,11 +92,14 @@ func display_mouse_location():
 	color = Color(.2, .8, .2)
 	setStateProperty("valid location", true)
 	var chunk_cells_size = (chunk_size+1) * (chunk_size+1)
+	#print((get_node("/root/main/ChunkContainer/") as ChunkContainerClass).vali)
 	for mark in building_marks:
 		var offset = Vector2(i%(size) -1, i/(size) -1)
 		var cell_with_offset: Vector2i = Vector2i(cell + offset)
 			
 		var half_chunk_size: int = chunk_size / 2
+		#print("---------------")
+		#print("original: " , cell_with_offset)
 		if abs(cell_with_offset.x) > half_chunk_size or abs(cell_with_offset.y) > half_chunk_size:
 			var dir = Vector2.ZERO
 
@@ -156,7 +163,8 @@ func display_mouse_location():
 		else:
 			chunk_class = chunk_container.get_chunk(chunk)
 			cell_class = chunk_class.cells[chunk_class.getIndexFromPos(cell_with_offset)]
-		
+		#print("after: " , cell)
+		#print(chunk_class.chunk_pos)
 		#print(cell_class.occupied)
 		if cell_class.occupied:
 			setStateProperty("valid location", false)
@@ -164,10 +172,9 @@ func display_mouse_location():
 		if not PlacementSystem.CanPlaceTower(tower_name, cell_class):
 			setStateProperty("valid location", false)
 		
-		var cell_instance = cell_class.instance
-		
-		building_marks[i].scale = cell_instance.scale * 1.05 / 2
-		building_marks[i].transform.origin = cell_instance.transform.origin + Vector3(chunk_class.chunk_pos.x, 0, chunk_class.chunk_pos.y) * (chunk_size+1)
+		building_marks[i].scale = Vector3.ONE * .4
+		#print(chunk_class.get_cell_global_v3(cell))
+		building_marks[i].transform.origin = chunk_class.get_cell_global_v3(cell_class.position2D()) + Vector3.UP * .3
 		i+=1
 	
 	if getStateProperty("valid location") == false:
@@ -178,14 +185,16 @@ func display_mouse_location():
 		(mark.get_child(0) as SpotLight3D).light_color = color
 
 func deselect_tower(tower: Tower, alsoUnInspect: bool = true):
-	if tower == null: return
 	for child in get_node("/root/main/VFXContainer").get_children():
 		if child is InspectRange:
 			child.queue_free()
 			child.destroy()
+	if tower == null: return
+	if not is_instance_valid(tower) or tower.is_queued_for_deletion(): return
+	setStateProperty("inspecting", null)
 	if alsoUnInspect:
-		print("also uninspec")
-		ingame.uninspect(tower)
+		#ingame().uninspect(tower)
+		pass
 
 func inspect_tower(tower : Tower):
 	#if (getStateProperty("inspecting") == tower): return
@@ -193,13 +202,14 @@ func inspect_tower(tower : Tower):
 		deselect_tower(tower, false)
 	elif getStateProperty("inspecting") != null:
 		deselect_tower(tower)
+	ingame().book.loadTowerData(tower)
 	var position = tower.position
 	var range_tscn = preload("res://components/Systems/range.tscn")
 	var range = range_tscn.instantiate()
 	
 	range.init(tower.range, tower.cell.global_pos_3d())
 	
-	ingame.inspect(tower)
+	ingame().inspect(tower)
 	get_node("/root/main/VFXContainer").add_child(range)
 	setStateProperty("inspecting", tower)
 
@@ -215,12 +225,28 @@ func perform_cast_nonplacing():
 	elif zone.name == "towerstatic":
 		var parent : Tower = zone.get_parent() as Tower
 		inspect_tower(parent)
-	elif not _mouse_on_ui:
+	elif zone.is_in_group("enemy_hitbox"):
+		var parent: Enemy = zone.get_parent_node_3d()
+		ingame().showEnemy(parent)
+	elif not _mouse_on_ui and not mouse_on_book:
+		ingame().hideEnemyData()
 		var prop = getStateProperty("inspecting")
-		if prop: deselect_tower(prop)
+		if prop and is_instance_valid(prop):
+			deselect_tower(prop)
+
+func listenBook():
+	if is_instance_valid(ingame()):
+		ingame().book_closed.connect(func():
+			if getStateProperty("inspecting"):
+				deselect_tower(getStateProperty("inspecting"))
+			)
+	ingame().enterbuildmode.connect(_on_game_ui_enterbuildmode)
+		
 
 func _ready() -> void:
 	chunk_size = Configuration.read("CHUNK", "SIZE")
+	
+	call_deferred("listenBook")
 	
 	var player_skills = Configuration.read("GAME_DATA", "SKILL_DATA")
 	if not (player_skills is String): player_skills = "{}"
@@ -248,15 +274,19 @@ func _input(event: InputEvent) -> void:
 
 func _on_state_changed(state : STATES) -> void:
 	if state == STATES.BUILDING:
-		ingame.hide_buttons()
+		ingame().hide_buttons()
 	elif state == STATES.GAME:
-		ingame.show_buttons()
+		ingame().show_buttons()
 
 func _on_currency_changed(wood, stone, gold, mana) -> void:
-	ingame.setWood(wood)
-	ingame.setStone(stone)
-	ingame.setGold(gold)
-	ingame.setMana(mana)
+	ingame().call_deferred("setWood", wood)
+	ingame().call_deferred("setStone", stone)
+	ingame().call_deferred("setGold", gold)
+	ingame().call_deferred("setMana", mana)
+	#ingame().setWood(wood)
+	#ingame().setStone(stone)
+	#ingame().setGold(gold)
+	#ingame().setMana(mana)
 
 func _on_ingame_mouse_entered() -> void:
 	_mouse_on_ui = false
@@ -264,9 +294,13 @@ func _on_ingame_mouse_entered() -> void:
 func _on_ingame_mouse_exited() -> void:
 	_mouse_on_ui = true
 
-func _on_ingame_ui_enterbuildmode(placing: String) -> void:
+func _on_ingame_ui_book_closed() -> void:
+	deselect_tower(null)
+
+func _on_game_ui_enterbuildmode(placing: String) -> void:
 	var tower_size : int = Configuration.getData_absolute()["Entity"]["Tower"][placing]["Size"]
 	var radius: int = tower_size / 2
+	
 	for i in tower_size * tower_size:
 		var clone : MeshInstance3D =  building_mark.duplicate()
 		clone.show()
